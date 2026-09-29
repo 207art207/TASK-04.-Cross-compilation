@@ -703,3 +703,361 @@ The TARGET logs were added in commit:
 
 These results provide the comparison baseline for native compilation
 directly on TARGET and for the subsequent static-linking stage.
+
+## 4. Native Compilation and Analysis on TARGET
+
+### 4.1. Native Development Environment
+
+The application was compiled directly on the Raspberry Pi 5 using the
+native development tools available on TARGET.
+
+Unlike the previous cross-compilation stage, both compilation and
+execution took place on the AArch64 TARGET system.
+
+The compiler identification recorded in the executable is:
+
+```text
+GCC: (Debian 14.2.0-19) 14.2.0
+```
+
+The recorded TARGET environment is:
+
+| Parameter | Value |
+|---|---|
+| Device | Raspberry Pi 5 |
+| Hostname | `ajax-rpi5` |
+| Operating system | Linux |
+| Kernel release | `6.18.50+rpt-rpi-2712` |
+| Architecture | `aarch64` |
+| Native compiler | `gcc` |
+| Native GCC version | `14.2.0`, Debian package identification `14.2.0-19` |
+
+The resulting executable and analysis output demonstrate that the
+compiler, development headers and libraries, and required analysis
+utilities were available on TARGET.
+
+### 4.2. Script Adaptation and HOST Recheck
+
+Two TARGET-specific scripts were prepared from the existing native
+HOST scripts:
+
+```text
+scripts/build-native-target.sh
+scripts/analyze-build-native-target.sh
+```
+
+The scripts do not differ significantly from their HOST counterparts.
+The compilation and analysis operations remain unchanged.
+
+The operational differences are limited to file paths:
+
+| Setting | Native HOST script | Native TARGET script |
+|---|---|---|
+| Build output | `builds/env-info-native-host` | `builds/env-info-native-target` |
+| Analyzed executable | `builds/env-info-native-host` | `builds/env-info-native-target` |
+| Analysis log | `logs/native-host-analysis.txt` | `logs/native-target-analysis.txt` |
+
+The displayed headings and diagnostic messages were also adjusted to
+refer to TARGET.
+
+Both build scripts use the same compiler-selection expression:
+
+```bash
+CC="${CC:-gcc}"
+```
+
+Both use the same source file, compiler flags, directory handling,
+compiler availability check, and compilation command structure.
+
+Similarly, both analysis scripts perform the same checks and invoke
+the same utilities.
+
+No changes to the C source code or build logic were required to make
+native compilation work on TARGET. The original HOST scripts remained
+unchanged.
+
+Therefore, repeating the unchanged HOST workflow was not necessary
+for this stage. The conditional HOST recheck in task 4(d*) was considered
+inapplicable because no compatibility-related script modifications
+were required; separate TARGET copies only adjusted paths and messages.
+
+The native TARGET executable was built and tested on the Raspberry Pi.
+
+### 4.3. Native Build on TARGET
+
+The build script is executed from the project root on TARGET:
+
+```bash
+./scripts/build-native-target.sh
+```
+
+With the default compiler selection, the equivalent compilation
+command is:
+
+```bash
+gcc -std=c11 \
+    -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 \
+    -O2 -g \
+    src/env-info.c \
+    -o builds/env-info-native-target
+```
+
+The output executable is:
+
+```text
+builds/env-info-native-target
+```
+
+The explicit warning, optimization, and debugging flags are the same
+as those used for the native HOST build and the cross build.
+
+Using the native `gcc` on TARGET produces AArch64 machine code.
+The application source does not require architecture-specific changes.
+
+### 4.4. Functional Testing on TARGET
+
+The file-output test produced `logs/native-target-create-file.txt`
+with the following content:
+
+```text
+=== ENVIRONMENT INFORMATION ===
+Hostname: ajax-rpi5
+Time: Tue Sep 29 21:04:46 2026
+OS: Linux
+Kernel release: 6.18.50+rpt-rpi-2712
+Kernel version: #1 SMP PREEMPT Debian 1:6.18.50-1+rpt1 (2026-09-11)
+Hardware platform: aarch64
+```
+
+The output identifies the Raspberry Pi runtime environment.
+
+The append-test file, `logs/native-target-append-file.txt`, contains
+the initial line:
+
+```text
+Hello native Raspberry Pi5
+```
+
+The environment-information message follows this line and records
+the execution time:
+
+```text
+Tue Sep 29 21:06:40 2026
+```
+
+The original text remains present before the application message,
+consistent with the use of append mode.
+
+| Check | Recorded result |
+|---|---|
+| Execution of the native TARGET application | Output identifies `ajax-rpi5` and `aarch64` |
+| File-output test | Environment information is stored in `logs/native-target-create-file.txt` |
+| Append test | Existing text is preserved in `logs/native-target-append-file.txt` |
+| Runtime environment reporting | Hostname and kernel information belong to TARGET |
+
+### 4.5. Analysis of the Native TARGET Executable
+
+The analysis script is executed on TARGET:
+
+```bash
+bash scripts/analyze-build-native-target.sh
+```
+
+It analyzes:
+
+```text
+builds/env-info-native-target
+```
+
+The complete output is stored in:
+
+```text
+logs/native-target-analysis.txt
+```
+
+The script uses `readelf`, `ldd`, `size`, and `strings`, together with
+`file` and `stat`.
+
+#### ELF Format and Linking
+
+The recorded executable properties are:
+
+| Property | Value |
+|---|---|
+| Format | ELF — Executable and Linkable Format |
+| Class | `ELF64` |
+| Byte order | Little-endian |
+| Machine | `AArch64` |
+| Type | `DYN`, PIE — Position Independent Executable |
+| Linking | Dynamic |
+| Debug information | Present |
+| Symbol table | Preserved, `not stripped` |
+
+The `INTERP` segment requests the dynamic loader:
+
+```text
+/lib/ld-linux-aarch64.so.1
+```
+
+The dynamic section contains the direct dependency:
+
+```text
+NEEDED: libc.so.6
+```
+
+The TARGET `ldd` output resolves it as:
+
+```text
+libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6
+```
+
+No missing-library or symbol-version errors appear in the recorded
+analysis output.
+
+The required glibc symbol versions are:
+
+```text
+GLIBC_2.17
+GLIBC_2.34
+```
+
+These are requirements of the executable, not an identification of
+the glibc version installed on TARGET.
+
+#### Code, Data, and File Size
+
+The `size` output is:
+
+```text
+text    data    bss    dec    hex
+3255    704     8      3967   f7f
+```
+
+The complete file size reported by `stat` is:
+
+```text
+76416 bytes
+```
+
+The complete file includes ELF headers, symbol tables, debugging
+information, padding, and other metadata. Therefore, it is larger
+than the sum reported by `size`.
+
+#### Printable Strings and Build Information
+
+The `strings -a` output contains:
+
+- the environment-information header and field templates;
+- usage, warning, and error messages;
+- library function names;
+- the GCC identification string;
+- debugging information associated with the TARGET build environment.
+
+The recorded source path is:
+
+```text
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/src/env-info.c
+```
+
+Header paths include:
+
+```text
+/usr/include/aarch64-linux-gnu/bits
+/usr/include
+```
+
+Together with the Debian GCC identification, these paths are consistent
+with native compilation on TARGET.
+
+They differ from the HOST paths and cross-toolchain include paths
+recorded in the cross-built executable.
+
+### 4.6. Comparison with the Cross-Compiled Executable
+
+Both executables run on the same AArch64 TARGET system, but they were
+built in different environments.
+
+| Property | Cross build | Native TARGET build |
+|---|---|---|
+| Compilation system | HOST, x86_64 | TARGET, AArch64 |
+| Execution system | TARGET | TARGET |
+| Compiler | `aarch64-linux-gnu-gcc` | `gcc` |
+| GCC version | `16.1.0` | `14.2.0` |
+| Output architecture | AArch64 | AArch64 |
+| Executable type | ELF64 PIE | ELF64 PIE |
+| Linking | Dynamic | Dynamic |
+| Dynamic loader | `/lib/ld-linux-aarch64.so.1` | `/lib/ld-linux-aarch64.so.1` |
+| Direct shared-library dependency | `libc.so.6` | `libc.so.6` |
+| Required glibc symbol versions | `GLIBC_2.17`, `GLIBC_2.34` | `GLIBC_2.17`, `GLIBC_2.34` |
+| Debug information | Present | Present |
+
+The size comparison is:
+
+| Metric | Cross build | Native TARGET build |
+|---|---:|---:|
+| `text`, bytes | 3247 | 3255 |
+| `data`, bytes | 704 | 704 |
+| `bss`, bytes | 8 | 8 |
+| Total `dec`, bytes | 3959 | 3967 |
+| Complete file size, bytes | 76648 | 76416 |
+
+The native TARGET executable is 232 bytes smaller as a complete file,
+although its `text` category and `dec` total are 8 bytes larger.
+
+Additional inspection of the stored executables shows:
+
+| ELF section | Cross build | Native TARGET build |
+|---|---:|---:|
+| `.text` | 868 bytes | 868 bytes |
+| `.eh_frame` | 248 bytes | 256 bytes |
+
+The `text` category reported by `size` is not limited to the `.text`
+section. Consequently, its 8-byte increase should not be described
+as an 8-byte increase in machine instructions.
+
+The executables also differ in metadata and section layout. For
+example, the cross-built file contains an `.ARM.attributes` section,
+while the native TARGET file does not.
+
+These differences show why a slightly larger allocated-section total
+can coexist with a smaller complete file.
+
+The explicit build flags are the same, but compiler versions and
+toolchain defaults differ. The observed size differences do not
+establish a performance advantage for either build.
+
+Both executables produced the expected TARGET environment information
+and preserved existing file contents in the recorded append tests.
+
+### 4.7. Recorded Artifacts and Outcome
+
+The TARGET-specific scripts were added in commit:
+
+```text
+cb6a79a
+```
+
+The native TARGET executable and its test results were added in commit:
+
+```text
+6ff11be
+```
+
+The recorded artifacts are:
+
+```text
+scripts/build-native-target.sh
+scripts/analyze-build-native-target.sh
+builds/env-info-native-target
+logs/native-target-analysis.txt
+logs/native-target-create-file.txt
+logs/native-target-append-file.txt
+```
+
+Native compilation directly on TARGET produced a dynamically linked
+AArch64 executable from the same C source used in the previous stages.
+
+The existing build and analysis logic was reusable without
+compatibility-related changes. Only output paths, input paths,
+report paths, and descriptive messages were adjusted for the
+TARGET-specific copies.
