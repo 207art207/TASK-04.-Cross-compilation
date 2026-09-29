@@ -1,0 +1,8 @@
+=== ENVIRONMENT INFORMATION ===
+Hostname: ajax-rpi5
+Time: Tue Sep 29 21:04:46 2026
+OS: Linux
+Kernel release: 6.18.50+rpt-rpi-2712
+Kernel version: #1 SMP PREEMPT Debian 1:6.18.50-1+rpt1 (2026-09-11)
+Hardware platform: aarch64
+
