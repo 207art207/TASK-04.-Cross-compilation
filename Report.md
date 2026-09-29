@@ -1061,3 +1061,494 @@ The existing build and analysis logic was reusable without
 compatibility-related changes. Only output paths, input paths,
 report paths, and descriptive messages were adjusted for the
 TARGET-specific copies.
+
+## 5. Static Linking and Comparison with Dynamic Builds
+
+### 5.1. Purpose and Build Configuration
+
+The application was built with static linking in three configurations:
+
+| Configuration | Compilation system | Compiler | Execution system |
+|---|---|---|---|
+| Native HOST static | HOST, x86_64 | `gcc` | HOST |
+| Cross static | HOST, x86_64 | `aarch64-linux-gnu-gcc` | TARGET |
+| Native TARGET static | TARGET, AArch64 | `gcc` | TARGET |
+
+All configurations use the same application source:
+
+```text
+src/env-info.c
+```
+
+No changes to the C source were required for static linking.
+
+The existing build scripts were copied and adapted by adding `-static`,
+changing the output filenames, and updating descriptive messages.
+
+The warning, optimization, and debugging options remain:
+
+```text
+-std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -O2 -g
+```
+
+The additional `-static` option selects static linking. Required library
+code is incorporated into the executable during linking.
+
+The static build scripts and their output files are:
+
+| Build script | Output executable |
+|---|---|
+| `scripts/build-native-host-static.sh` | `builds/env-info-native-host-static` |
+| `scripts/build-cross-host-static.sh` | `builds/env-info-cross-host-static` |
+| `scripts/build-native-target-static.sh` | `builds/env-info-native-target-static` |
+
+The native HOST script explicitly selects `gcc`, while the cross script
+explicitly selects `aarch64-linux-gnu-gcc`.
+
+The compiler identification strings recorded in the static executables are:
+
+| Configuration | Compiler identification |
+|---|---|
+| Native HOST static | `GCC: (GNU) 16.2.1 20260810` |
+| Cross static | `GCC: (GNU) 16.1.0` |
+| Native TARGET static | `GCC: (Debian 14.2.0-19) 14.2.0` |
+
+### 5.2. Adaptation of the Analysis Scripts
+
+Separate analysis scripts were prepared for the static executables:
+
+| Analysis script | Analysis log |
+|---|---|
+| `scripts/analyze-build-native-host-static.sh` | `logs/native-host-static-analysis.txt` |
+| `scripts/analyze-build-cross-target-static.sh` | `logs/cross-target-static-analysis.txt` |
+| `scripts/analyze-build-native-target-static.sh` | `logs/native-target-static-analysis.txt` |
+
+Each script runs:
+
+```text
+file
+readelf -hW
+readelf -lW
+readelf -dW
+readelf -VW
+ldd
+size
+stat
+strings -a
+```
+
+Diagnostic messages are recorded using:
+
+```bash
+} 2>&1 | tee "$REPORT"
+```
+
+The main change to the analysis logic concerns `ldd`.
+
+For all three static executables, the recorded result is:
+
+```text
+not a dynamic executable
+ldd exit code: 1
+```
+
+The original analysis scripts used `set -euo pipefail` and called `ldd`
+directly. A nonzero return from that command would stop the analysis
+before `size`, `stat`, and `strings`.
+
+The static analysis scripts place the `ldd` call inside an `if` statement.
+This records its exit status and allows the remaining analysis to run.
+
+The saved logs contain the subsequent size and string output, confirming
+that analysis continued after `ldd`.
+
+A nonzero `ldd` exit code alone does not prove static linking. In this
+case, static linking is independently confirmed by `file` and the
+absence of a dynamic loader segment and dynamic dependencies in
+the `readelf` output.
+
+The recorded exit code `1` belongs to `ldd`, not to the application.
+
+### 5.3. Native Static Compilation and Testing on TARGET
+
+The native static build is performed directly on the Raspberry Pi:
+
+```bash
+./scripts/build-native-target-static.sh
+```
+
+With the default compiler selection, the equivalent compilation command is:
+
+```bash
+gcc -std=c11 \
+    -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 \
+    -O2 -g -static \
+    src/env-info.c \
+    -o builds/env-info-native-target-static
+```
+
+The file-output test produced
+`logs/native-target-static-create-file.txt`:
+
+```text
+=== ENVIRONMENT INFORMATION ===
+Hostname: ajax-rpi5
+Time: Tue Sep 29 23:48:29 2026
+OS: Linux
+Kernel release: 6.18.50+rpt-rpi-2712
+Kernel version: #1 SMP PREEMPT Debian 1:6.18.50-1+rpt1 (2026-09-11)
+Hardware platform: aarch64
+```
+
+The recorded output confirms execution on TARGET and successful writing
+of the environment-information message to a file.
+
+The executable is analyzed on TARGET using:
+
+```bash
+./scripts/analyze-build-native-target-static.sh
+```
+
+Its recorded properties are:
+
+| Property | Value |
+|---|---|
+| Format | ELF64, little-endian |
+| Architecture | AArch64 |
+| ELF type | `EXEC` |
+| Linking | Static |
+| Dynamic loader segment | Absent |
+| Dynamic section | Absent |
+| Debug information | Present |
+| Symbol table | Preserved, `not stripped` |
+| Complete file size | 854280 bytes |
+
+### 5.4. Native Static Compilation and Testing on HOST
+
+The native HOST build is performed using:
+
+```bash
+./scripts/build-native-host-static.sh
+```
+
+The equivalent compilation command is:
+
+```bash
+gcc -std=c11 \
+    -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 \
+    -O2 -g -static \
+    src/env-info.c \
+    -o builds/env-info-native-host-static
+```
+
+The file `logs/native-host-static-create-file.txt` records:
+
+```text
+=== ENVIRONMENT INFORMATION ===
+Hostname: Legion-Slim7
+Time: Tue Sep 29 23:14:19 2026
+OS: Linux
+Kernel release: 7.2.7-arch1-1
+Kernel version: #1 SMP PREEMPT_DYNAMIC Mon, 21 Sep 2026 18:51:14 +0000
+Hardware platform: x86_64
+```
+
+The static executable reports the HOST runtime environment.
+
+The analysis command is:
+
+```bash
+./scripts/analyze-build-native-host-static.sh
+```
+
+The resulting file is a statically linked x86_64 ELF64 executable of
+type `EXEC`, with debugging information and an unstripped symbol table.
+
+Its complete file size is:
+
+```text
+1063832 bytes
+```
+
+### 5.5. Static Cross-Compilation and Execution on TARGET
+
+The static cross build is performed on HOST:
+
+```bash
+./scripts/build-cross-host-static.sh
+```
+
+The equivalent compilation command is:
+
+```bash
+aarch64-linux-gnu-gcc -std=c11 \
+    -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 \
+    -O2 -g -static \
+    src/env-info.c \
+    -o builds/env-info-cross-host-static
+```
+
+The compiler runs on x86_64 HOST and generates an AArch64 executable.
+
+The resulting file was made available on TARGET. The TARGET analysis
+log records its location as:
+
+```text
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-cross-host-static
+```
+
+The file-output test produced
+`logs/cross-target-static-create-file.txt`:
+
+```text
+=== ENVIRONMENT INFORMATION ===
+Hostname: ajax-rpi5
+Time: Tue Sep 29 23:45:40 2026
+OS: Linux
+Kernel release: 6.18.50+rpt-rpi-2712
+Kernel version: #1 SMP PREEMPT Debian 1:6.18.50-1+rpt1 (2026-09-11)
+Hardware platform: aarch64
+```
+
+Although the executable was compiled on HOST, the reported hostname,
+kernel, architecture, and time belong to the TARGET runtime environment.
+
+The analysis is performed on TARGET:
+
+```bash
+./scripts/analyze-build-cross-target-static.sh
+```
+
+The executable is a statically linked AArch64 ELF64 file of type `EXEC`.
+
+Its complete file size is:
+
+```text
+993296 bytes
+```
+
+### 5.6. Comparison of Linking Properties
+
+The three static executables share the following properties:
+
+- ELF64 format and little-endian byte order;
+- ELF type `EXEC`;
+- static linking;
+- no `INTERP` segment;
+- no dynamic section or `NEEDED` entries;
+- no symbol-version information reported by `readelf -VW`;
+- debugging information present;
+- symbol tables retained.
+
+The comparison with the previous dynamic builds is:
+
+| Property | Dynamic builds | Static builds |
+|---|---|---|
+| ELF type | `DYN`, PIE — Position Independent Executable | `EXEC` |
+| Dynamic loader requested through `INTERP` | Present | Absent |
+| Direct shared-library dependency | `libc.so.6` | No `NEEDED` entries |
+| Dynamic section | Present | Absent |
+| Required shared-library symbol versions | Reported by `readelf -VW` | No version information reported |
+| `ldd` result | Lists resolved shared libraries | Reports `not a dynamic executable` |
+| Debug information | Present | Present |
+
+For all static files, `readelf -dW` reports:
+
+```text
+There is no dynamic section in this file.
+```
+
+The `readelf -VW` result is:
+
+```text
+No version information found in this file.
+```
+
+The absence of dynamic symbol-version requirements does not mean that
+the application no longer uses libc functionality. The required
+implementations are linked into the static executable.
+
+### 5.7. Comparison of Code, Data, and Complete File Sizes
+
+The measurements below come from the saved analysis logs and were
+cross-checked against the executables stored in the repository.
+
+All sizes are in bytes.
+
+| Build | `text` | `data` | `bss` | `dec` | Complete file size |
+|---|---:|---:|---:|---:|---:|
+| Native HOST dynamic | 3353 | 656 | 48 | 4057 | 21960 |
+| Native HOST static | 910575 | 24480 | 23296 | 958351 | 1063832 |
+| Cross dynamic | 3247 | 704 | 8 | 3959 | 76648 |
+| Cross static | 625749 | 23004 | 22336 | 671089 | 993296 |
+| Native TARGET dynamic | 3255 | 704 | 8 | 3967 | 76416 |
+| Native TARGET static | 650729 | 24340 | 22224 | 697293 | 854280 |
+
+The complete file-size changes are:
+
+| Configuration | Dynamic file | Static file | Increase | Static/dynamic ratio |
+|---|---:|---:|---:|---:|
+| Native HOST | 21960 | 1063832 | 1041872 | 48.44 |
+| Cross | 76648 | 993296 | 916648 | 12.96 |
+| Native TARGET | 76416 | 854280 | 777864 | 11.18 |
+
+For the direct comparison with task 4, the native TARGET executable
+grew from 76416 to 854280 bytes: an increase of 777864 bytes.
+
+Static linking increases the executable size because library code and
+associated data are included in the file. The dynamically linked
+executable relies on separately installed shared libraries, whose
+contents are not included in its own file size.
+
+Consequently, these ratios compare executable files, not the total
+storage required by complete runtime environments.
+
+The `text` category reported by the default `size` format includes
+read-only data as well as executable code. It should not be interpreted
+as the size of the application’s machine instructions alone.
+
+The `dec` column is the sum of `text`, `data`, and `bss`. It differs from
+the complete file size because the file also contains headers,
+debugging information, symbol tables, padding, and other metadata.
+Zero-initialized storage represented by `bss` does not require an
+equivalent block of initialized bytes in the file.
+
+Neither `size` nor the complete file size measures total runtime memory
+consumption. These measurements also do not establish a performance
+advantage for either linking method.
+
+### 5.8. Comparison of the Two Static AArch64 Builds
+
+Both the native TARGET static executable and the cross static executable
+run on the same AArch64 TARGET system.
+
+However, their complete file sizes and section totals differ:
+
+| Metric | Native TARGET static | Cross static |
+|---|---:|---:|
+| `text` | 650729 | 625749 |
+| `data` | 24340 | 23004 |
+| `bss` | 22224 | 22336 |
+| `dec` | 697293 | 671089 |
+| Complete file size | 854280 | 993296 |
+
+The cross-built file is 139016 bytes larger, although its `dec` total
+is 26204 bytes smaller.
+
+Additional inspection of the stored files was performed using:
+
+```bash
+readelf -SW builds/env-info-native-target-static
+readelf -SW builds/env-info-cross-host-static
+```
+
+This revealed a substantial difference in debugging information:
+
+| Debug section measurement | Native TARGET static | Cross static |
+|---|---:|---:|
+| `.debug_info` | 1923 | 70291 |
+| `.debug_line` | 518 | 48104 |
+| `.debug_loclists` | 432 | 57357 |
+| Sum of all `.debug_*` sections | 4628 | 209005 |
+
+The cross executable contains 204377 more bytes in `.debug_*` sections.
+
+These sections are not marked as allocated sections in the inspected
+files. They contribute to the complete file size without contributing
+to the `text`, `data`, and `bss` totals in the same way.
+
+The cross executable also contains debugging paths associated with
+the toolchain's `libgcc` sources, including:
+
+```text
+/build/aarch64-linux-gnu-gcc/src/gcc-16.1.0/libgcc
+```
+
+This is consistent with additional debugging information being retained
+from linked runtime-library objects.
+
+The debugging-section difference is a major contributor to the larger
+cross-built file. Other sections, file layout, and padding also differ.
+
+Therefore, the larger complete cross executable should not be described
+as containing proportionally more executable code.
+
+The builds use different compiler versions and library/toolchain
+environments. Their differences cannot be attributed solely to whether
+compilation occurred on HOST or TARGET.
+
+### 5.9. Printable Strings and Functional-Test Coverage
+
+The `strings -a` results contain the application’s:
+
+- environment-information header;
+- field-format strings;
+- usage message;
+- existing-file warning;
+- error messages;
+- compiler identification and source paths.
+
+The static executables also contain numerous strings and symbols from
+linked library code.
+
+For example, the logs contain:
+
+```text
+/etc/localtime
+/usr/share/zoneinfo
+```
+
+The presence of these strings is not a trace proving that a particular
+file was opened during the recorded test. It also does not constitute
+a shared-library dependency.
+
+The saved static file-output results cover:
+
+| Configuration | Evidence file | Recorded runtime system |
+|---|---|---|
+| Native HOST static | `logs/native-host-static-create-file.txt` | `Legion-Slim7`, x86_64 |
+| Cross static | `logs/cross-target-static-create-file.txt` | `ajax-rpi5`, AArch64 |
+| Native TARGET static | `logs/native-target-static-create-file.txt` | `ajax-rpi5`, AArch64 |
+
+These files confirm that each executable ran and wrote the expected
+environment-information message.
+
+Separate append-test outputs and captured warning messages were not
+saved for the static builds. Therefore, this section does not claim
+that append behavior was independently revalidated for every static
+configuration.
+
+### 5.10. Recorded Commits and Conclusions
+
+The static-linking work is recorded in the following commits:
+
+| Commit | Recorded changes |
+|---|---|
+| `5bfcf10` | Native HOST static scripts, executable, analysis, and file-output result |
+| `a2d3a7e` | Static cross-build and TARGET analysis scripts, plus the cross-built executable |
+| `419e81e` | Native TARGET static build and analysis scripts |
+| `f57896c` | TARGET analysis and file-output result for the static cross-built executable |
+| `88272a5` | Native TARGET static executable, analysis, and file-output result |
+
+The results demonstrate that the same C source can be built with static
+linking for both x86_64 and AArch64.
+
+The static cross-built executable ran on the Raspberry Pi and reported
+the TARGET environment. The native TARGET static executable produced
+the same categories of runtime information.
+
+Static linking removed the recorded dependency on a separately loaded
+`libc.so.6` and the dynamic loader, while increasing executable file size.
+
+Architecture compatibility and kernel support remain necessary.
+An AArch64 static executable is still an AArch64 program, and successful
+execution on the tested TARGET does not establish compatibility with
+every other Linux system.
+
+The analysis scripts required a small adjustment to handle the expected
+nonzero `ldd` result while preserving the remaining analysis.
+
+The comparison also showed that debugging information can significantly
+affect complete file size. File-size differences must therefore be
+interpreted together with section sizes, linking properties and
+toolchain differences.
