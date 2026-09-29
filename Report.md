@@ -176,7 +176,7 @@ Usage: ./builds/env-info-native-host [file]
 
 ### 2.4. Executable File Analysis
 
-The `scripts/analyze-build.sh` script was developed to analyze the compiled HOST executable.
+The `scripts/analyze-build-native-host.sh` script was developed to analyze the compiled HOST executable.
 
 It is executed with:
 
@@ -311,8 +311,6 @@ The line break between the time value and the `OS` field during execution is pro
 Values such as the actual hostname, current time, and kernel version are obtained dynamically at runtime and are therefore not stored as fixed environment-specific strings inside the executable.
 
 ---
-
-## 3. Results of the Completed Stages
 
 C application was implemented to display information about the runtime environment and optionally write the same formatted message to a file using append mode.
 
