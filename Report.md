@@ -1,4 +1,4 @@
-# Report: Environment Information Application and Native Build on the HOST System
+# Report: Environment Information Application, Native Compilation and Cross-Compilation
 
 ## 1. C Application Development
 
@@ -181,7 +181,7 @@ The `scripts/analyze-build.sh` script was developed to analyze the compiled HOST
 It is executed with:
 
 ```bash
-./scripts/analyze-build.sh
+./scripts/analyze-build-native-host.sh
 ```
 
 The script analyzes:
@@ -341,3 +341,367 @@ The obtained HOST results provide a baseline for the next stages of the assignme
 - native compilation directly on the TARGET system;
 - static linking;
 - comparison of executables produced in different development environments.
+
+## 3. Cross-Compilation on HOST and Execution on TARGET
+
+### 3.1. Cross-Compilation Setup
+
+The application was cross-compiled on the x86_64 HOST system for the
+AArch64 TARGET system: a Raspberry Pi 5 running 64-bit Raspberry Pi OS Lite.
+
+The native build script was adapted into:
+
+```text
+scripts/build-cross-host.sh
+```
+
+The cross-compilation script explicitly selects:
+
+```bash
+CC="aarch64-linux-gnu-gcc"
+```
+
+This prevents an inherited `CC` environment variable from accidentally
+selecting the native HOST compiler.
+
+The source file and compiler flags remain the same as in the native build.
+The compiler and output executable path are changed.
+
+| Parameter | Value |
+|---|---|
+| Build system | HOST, x86_64 |
+| Execution system | TARGET, AArch64 |
+| Cross compiler | `aarch64-linux-gnu-gcc` |
+| Cross GCC version | `16.1.0` |
+| Compiler target | `aarch64-linux-gnu` |
+| Cross binutils version | `2.47` |
+| glibc supplied with the cross toolchain | `2.44` |
+| Source file | `src/env-info.c` |
+| Output executable | `builds/env-info-cross-host` |
+
+The build script is executed on HOST with:
+
+```bash
+bash scripts/build-cross-host.sh
+```
+
+The equivalent compiler invocation is:
+
+```bash
+aarch64-linux-gnu-gcc -std=c11 \
+    -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 \
+    -O2 -g \
+    src/env-info.c \
+    -o builds/env-info-cross-host
+```
+
+The compiler runs on HOST but generates machine code for TARGET.
+No changes to the application source code were required for this build.
+
+### 3.2. Deployment and Execution on TARGET
+
+The cross-compiled executable was made available on the Raspberry Pi.
+The TARGET analysis log identifies its location as:
+
+```text
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-cross-host
+```
+
+The filename retains the `cross-host` suffix because the executable was
+built on HOST. Its execution architecture is AArch64.
+
+The TARGET runtime information recorded in the application output is:
+
+| Parameter | Value |
+|---|---|
+| Hostname | `ajax-rpi5` |
+| Operating system | `Linux` |
+| Kernel release | `6.18.50+rpt-rpi-2712` |
+| Hardware architecture | `aarch64` |
+
+The file `logs/cross-target-create-file.txt` contains:
+
+```text
+=== ENVIRONMENT INFORMATION ===
+Hostname: ajax-rpi5
+Time: Tue Sep 29 20:01:30 2026
+OS: Linux
+Kernel release: 6.18.50+rpt-rpi-2712
+Kernel version: #1 SMP PREEMPT Debian 1:6.18.50-1+rpt1 (2026-09-11)
+Hardware platform: aarch64
+```
+
+The recorded hostname, kernel information, and architecture belong to
+TARGET rather than HOST. This demonstrates that the application obtains
+environment information at runtime.
+
+The append-test file, `logs/cross-target-append-file.txt`, contains:
+
+```text
+Hello Raspbery Pi5
+=== ENVIRONMENT INFORMATION ===
+Hostname: ajax-rpi5
+Time: Tue Sep 29 20:03:14 2026
+OS: Linux
+Kernel release: 6.18.50+rpt-rpi-2712
+Kernel version: #1 SMP PREEMPT Debian 1:6.18.50-1+rpt1 (2026-09-11)
+Hardware platform: aarch64
+```
+
+The initial text remains before the application message, consistent with
+the use of append mode.
+
+| Check | Recorded result |
+|---|---|
+| Application execution on TARGET | Output contains TARGET hostname, kernel, and architecture |
+| File-output test | Environment information is present in `logs/cross-target-create-file.txt` |
+| Append test | Existing text is preserved before the message in `logs/cross-target-append-file.txt` |
+| Dynamic library resolution | TARGET `ldd` output resolves the required libc without reporting missing dependencies |
+
+### 3.3. Executable Analysis on TARGET
+
+The script used for this stage is:
+
+```text
+scripts/analyze-build-cross-target.sh
+```
+
+It is executed on TARGET from the project root:
+
+```bash
+./scripts/analyze-build-cross-target.sh
+```
+
+The script analyzes `builds/env-info-cross-host` using `readelf`, `ldd`,
+`size`, and `strings`. It also runs `file` and `stat`.
+
+The complete analysis output is stored in:
+
+```text
+logs/cross-target-analysis.txt
+```
+
+Running `ldd` on TARGET checks library resolution in the environment
+where the AArch64 executable is intended to run.
+
+#### ELF Format and Architecture
+
+The `file` and `readelf -hW` results identify the executable as:
+
+| Property | Value |
+|---|---|
+| Format | ELF — Executable and Linkable Format |
+| Class | `ELF64` |
+| Byte order | Little-endian |
+| Machine | `AArch64` |
+| Type | `DYN`, PIE — Position Independent Executable |
+| Linking | Dynamic |
+| Debug information | Present |
+| Symbol table | Preserved, `not stripped` |
+
+These results confirm that the cross compiler generated an AArch64
+executable rather than an x86_64 HOST executable.
+
+#### Dynamic Loader and Libraries
+
+The `readelf -lW` output contains an `INTERP` segment requesting:
+
+```text
+/lib/ld-linux-aarch64.so.1
+```
+
+The `readelf -dW` output lists the following direct shared-library
+dependency:
+
+```text
+NEEDED: libc.so.6
+```
+
+On TARGET, `ldd` resolves this dependency as:
+
+```text
+libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6
+```
+
+The recorded output contains no missing-library or symbol-version errors.
+
+The `readelf -VW` output lists these required glibc symbol versions:
+
+```text
+GLIBC_2.17
+GLIBC_2.34
+```
+
+Although the cross toolchain contains glibc 2.44, this particular
+executable does not request a `GLIBC_2.44` symbol version.
+
+The recorded library resolution and application output demonstrate
+compatibility with the TARGET environment for the tested operations.
+They do not establish compatibility for every application built with
+the same toolchain.
+
+The installed TARGET glibc version is not explicitly recorded in these
+logs. Required symbol versions should not be interpreted as the installed
+library version.
+
+#### Printable Strings
+
+The `strings -a` output contains:
+
+- the environment-information header and field templates;
+- the existing-file warning;
+- usage and error messages;
+- library function names;
+- the compiler identification `GCC: (GNU) 16.1.0`;
+- source and header paths associated with the HOST build environment.
+
+For example, debugging information includes:
+
+```text
+/home/art207/Projects/TASK-04.-Cross-compilation/src/env-info.c
+/usr/aarch64-linux-gnu/include
+```
+
+These paths describe the compilation environment and are consistent
+with the use of `-g`. They are not runtime paths that must exist on
+the Raspberry Pi for normal application execution.
+
+### 3.4. Comparison with the Native HOST Build
+
+Both executables were built from the same application source using
+the same explicit warning, optimization, and debugging flags.
+
+However, the target architectures, compiler versions, and toolchain
+defaults differ.
+
+| Property | Native HOST build | Cross build executed on TARGET |
+|---|---|---|
+| Build machine | HOST | HOST |
+| Execution machine | HOST | TARGET |
+| Compiler | `gcc` | `aarch64-linux-gnu-gcc` |
+| GCC version | `16.2.1` | `16.1.0` |
+| ELF architecture | x86-64 | AArch64 |
+| ELF class | ELF64 | ELF64 |
+| Byte order | Little-endian | Little-endian |
+| Executable type | PIE | PIE |
+| Linking | Dynamic | Dynamic |
+| Direct libc dependency | `libc.so.6` | `libc.so.6` |
+| Debug information | Present | Present |
+| Runtime hostname | `Legion-Slim7` | `ajax-rpi5` |
+| Runtime kernel | `7.2.7-arch1-1` | `6.18.50+rpt-rpi-2712` |
+
+The dynamic loader paths differ:
+
+```text
+HOST:   /lib64/ld-linux-x86-64.so.2
+TARGET: /lib/ld-linux-aarch64.so.1
+```
+
+The required glibc symbol versions also differ:
+
+```text
+HOST:   GLIBC_2.2.5, GLIBC_2.4, GLIBC_2.34
+TARGET: GLIBC_2.17, GLIBC_2.34
+```
+
+The shared-library filename `libc.so.6` is the same, but each environment
+provides a library built for its own architecture.
+
+#### Size Comparison
+
+| Metric | Native HOST build | Cross build |
+|---|---:|---:|
+| `text`, bytes | 3353 | 3247 |
+| `data`, bytes | 656 | 704 |
+| `bss`, bytes | 48 | 8 |
+| Total `dec`, bytes | 4057 | 3959 |
+| Complete file size, bytes | 21960 | 76648 |
+
+The cross-built file is 54,688 bytes larger, while its total reported
+by `size` is 98 bytes smaller.
+
+This difference is largely explained by the ELF file layout rather than
+an increase in application code.
+
+The program headers show different `LOAD` segment alignment values:
+
+```text
+HOST:   0x1000  = 4096 bytes
+TARGET: 0x10000 = 65536 bytes
+```
+
+In the AArch64 executable, the first `LOAD` segment ends at file offset
+`0x0f60`, while the second starts at `0xfdb8`. The gap between them is:
+
+```text
+0xfdb8 - 0x0f60 = 61016 bytes
+```
+
+Inspection of the local cross-built executable confirmed that this gap
+contains zero bytes.
+
+The alignment value is an ELF segment property. It does not establish
+the actual memory page size used by the running TARGET kernel.
+
+Both files also contain debugging information, symbol tables, and other
+metadata. Consequently, the complete file size is different from the
+sum reported by `size`.
+
+Neither measurement represents the total runtime memory consumption of
+the application. The measurements also do not establish which executable
+runs faster.
+
+Because the architectures and compiler versions differ, the observed
+code and data differences cannot be attributed to a single factor.
+
+### 3.5. Cross-Development Observations
+
+The recorded results demonstrate the following:
+
+1. Selecting `aarch64-linux-gnu-gcc` generated machine code for the
+   Raspberry Pi while compilation remained on the x86_64 HOST.
+
+2. The application reported TARGET runtime information even though
+   it was compiled on HOST.
+
+3. Correct architecture alone is not sufficient for a dynamically
+   linked executable. The required loader, libraries, and symbol
+   versions must also be available on TARGET.
+
+4. In this test, the required libraries were resolved and the application
+   produced the expected TARGET information and file-output results.
+
+5. Executable file size depends on linker layout and metadata as well
+   as code and data. The larger AArch64 file does not imply proportionally
+   greater application memory usage.
+
+The file-existence check retains the limitation described in Section 1:
+an existing file that cannot be opened for reading may not produce
+the warning before an otherwise permitted append operation.
+
+### 3.6. Recorded Artifacts
+
+The cross-compilation and TARGET analysis scripts are stored in:
+
+```text
+scripts/build-cross-host.sh
+scripts/analyze-build-cross-target.sh
+```
+
+The executable and TARGET results are also tracked in the repository:
+
+```text
+builds/env-info-cross-host
+logs/cross-target-analysis.txt
+logs/cross-target-create-file.txt
+logs/cross-target-append-file.txt
+```
+
+The TARGET logs were added in commit:
+
+```text
+43ee489
+```
+
+These results provide the comparison baseline for native compilation
+directly on TARGET and for the subsequent static-linking stage.
