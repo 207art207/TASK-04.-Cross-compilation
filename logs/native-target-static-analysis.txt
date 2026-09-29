@@ -1,0 +1,4610 @@
+Static Native target executable analysis
+Executable: /home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-native-target-static
+
+File type
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-native-target-static: ELF 64-bit LSB executable, ARM aarch64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=2940eb8b00a373d7a33f083506b01338d9077e79, for GNU/Linux 3.7.0, with debug_info, not stripped
+
+ELF header: readelf -hW
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 03 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - GNU
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           AArch64
+  Version:                           0x1
+  Entry point address:               0x400940
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          852232 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         7
+  Size of section headers:           64 (bytes)
+  Number of section headers:         32
+  Section header string table index: 31
+
+Program headers: readelf -lW
+
+Elf file type is EXEC (Executable file)
+Entry point 0x400940
+There are 7 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  LOAD           0x000000 0x0000000000400000 0x0000000000400000 0x09efe4 0x09efe4 R E 0x10000
+  LOAD           0x0aba40 0x00000000004aba40 0x00000000004aba40 0x005f24 0x00b5d8 RW  0x10000
+  NOTE           0x0001c8 0x00000000004001c8 0x00000000004001c8 0x000024 0x000024 R   0x4
+  NOTE           0x09efc4 0x000000000049efc4 0x000000000049efc4 0x000020 0x000020 R   0x4
+  TLS            0x0aba40 0x00000000004aba40 0x00000000004aba40 0x000030 0x000058 R   0x8
+  GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10
+  GNU_RELRO      0x0aba40 0x00000000004aba40 0x00000000004aba40 0x0045c0 0x0045c0 R   0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .note.gnu.build-id .rela.plt .init .plt .text .fini .rodata .eh_frame .gcc_except_table .note.ABI-tag 
+   01     .tdata .init_array .fini_array .data.rel.ro .got .got.plt .data .bss 
+   02     .note.gnu.build-id 
+   03     .note.ABI-tag 
+   04     .tdata .tbss 
+   05     
+   06     .tdata .init_array .fini_array .data.rel.ro .got 
+
+Dynamic section: readelf -dW
+
+There is no dynamic section in this file.
+
+Symbol versions: readelf -VW
+
+No version information found in this file.
+
+Shared libraries: ldd
+	not a dynamic executable
+ldd exit code: 1
+Check file and readelf output: a static executable has no shared-library dependencies.
+
+Code and data sizes: size
+   text	   data	    bss	    dec	    hex	filename
+ 650729	  24340	  22224	 697293	  aa3cd	/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-native-target-static
+
+File size
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-native-target-static: 854280 bytes
+
+Printable strings: strings -a
+4aR4
+ `;9
+9cDQ
+@7@9
+7"%;
+5`&A
+7[|@
+Q","
+T@/@
+TCUF
+7@c87
+b07`l 7
+@y@zX7
+5b}@
+5b}@
+TB|@
+@y`_76	
+G`?)D|
+4`"@
+#Q)v
+*Bhl
+#Q)<p
+@9 	
+	k-1
+5`F@
+R"h 
+5`F@
+5`F@
+R!HF
+7`2@
+R!HF
+@9 x`
+BX`x`
+Reh"
+Tb2@9a
+5`F@
+T`*@
+R"h 
+R"h 
+x6tn@
+5`F@
+6cR@
+5`F@
+T?h"8b
+Ta"@
+Tun@
+Ta"@
+ @q 
+T`r@
+TcR@
+Tdr@
+R`r@
+*e:@
+Tun@
+T`R@
+R 4@
+hcxc
+R"h 
+T`:@
+j`8Axa
+T`R@
+07tn@
+ 7?#
+TbJ@
+RCh 
+T`"@
+@7`"@
+TaR@
+R"h 
+Ttn@
+T`r@
+Twn@
+ @qa
+5b"@
+Ttn@
+TaRB
+R"h 
+_8?(
+	@7c
+TaJ@
+x7vF@
+5vF@
+7vF@
+Ttn@
+@6b&@
+T`2@
+5tn@
+@6b&@
+5tn@
+Ttn@
+bja8
+h!8!
+Tc"@
+Qb~@
+ hc8
+j#8c
+Td&@
+9!4@
+6a2@
+@6tn@
+Tzn@
+x7zF@
+x7zF@
+5`F@
+Tzn@
+5tF@
+x7tF@
+Ttn@
+Ttn@
+x7{F@
+x7{F@
+5`F@
+T`R@
+Tc/@
+T`RB
+ CP9
+ CP9 
+T`2@
+S3G@
+B@9@
+B@9 
+Tb2@
+TwFD
+R"h 
+!kcx
+!k#x4
+Akbx
+Ak"x
+4x2@
+C@9 
+C@9 
+T80@
+Qvo}
+@k!:
+T!<@
+ hsx
+ h3x
+Tbh`
+*d<@
+ hbx
+R'A@
+ h"x
+hxx!
+ G@9
+`G@9@
+@kax
+@k!x
+j#xl
+`G@9
+D@9B
+5s:D
+Ts:D
+!D@9
+QB0U
+F@9bB
+D@9 
+ D@9@
+F@9@
+F@9a
+!D@9'
+hhx&
+!D@9
+@@9 
+BD@9F
+F@9@)
+F@9 "
+D@9F
+!@@9a
+BD@95
+@kax
+@k!x
+F@9!
+Bt[9B
+@t[9
+@t[9
+ t[9
+!D@9
+ hdx 
+"h$x
+B@9@
+R"h 
+D@9@
+ t[9
+!D@9A
+bD@9_
+!t[9
+Ts:D
+!t[9
+yA\P
+T{;D
+yb\P
+*5|@
+ct[9
+R"h 
+R"h 
+@@9a
+8@9"
+T!,|
+T",|
+T!L|
+8@9a
+T!,|
+@@9a
+<@9_
+T?,|
+T!L|
+NAp@L#
+ nc<!n
+ nc<!nd
+ nc<!nd
+@p@L
+ 6B@
+j`8!hb8
+j`8!hb8?
+hc8?
+Akb8
+bk 8B
+Akt8
+uk`8tk 8
+ckc8
+Tajy
+_8(hn8
+(6($A
+_8(hn8
+T&		
+3!|`
+3!|`
+ (@z
+ p@L
+ N"@!
+ N"@!
+@ycU
+RkA'
+	Kc`
+ @yc|
+TE}@
+Qg@'
+rd0"
+rd0"
+Qd|"
+@9"x
+@8Bx
+#@ye
+T3|@
+R3|@
+Oc@<
+RB@-
+Z h<
+Z!|@
+Ta&@
+!hu8
+@9`zy
+R8h@
+hd8%
+!hb8
+hs8A
+ha8s
+@9!/@
+K@h!
+K@h!
+R"h 
+K@h#
+T!|@
+T!|@
+TB|@
+R"h 
+Tc|@
+@9_(
+k485
+a#@y`O
+AO@9?
+5Aw@9$
+@8!|@
+js8s
+T@#@9
+5`RAx
+T@'@y
+`^@9 
+T@'@y
+TB#@yB
+T@o@y
+TSs@yC
+qB 9
+T@#@9 
+RB`<
+*!+@
+T@k{8
+k`8?
+k;8{
+TAhg
+@9`j"
+Rf@&
+d @)_
+B0@9B
+TF B
+*B3@
+9`zA
+p@yA
+(7`2@
+T`>@
+07`&D
+@z ;
+T`zA
+7`6B
+RazA
+7`b@
+*azA
+@9%}@
+TB|@
+Rbj!8
+@9?l
+aj`8?
+Tc~|
+Jz@	
+Td~|
+T`~|
+T`~|
+Tc|@
+Tb~|
++	) 
++	)@
++	)@
+TbNB
+Tb:B
+Ta6B
+Rc:B
+Ta6B
+Rb:B
+Rb:B
+$`c9#
+@9s"
+@ka8
+T@ky8
+`ka8
+Iky8
+5b:@
+T`2@
+T`.@
+Tb.@
+T@$@
+TI}@
+T 	@
+T!	@
+p@9B
+@p@9
+B0@9
+"l@y_
+#p@yA
+T`>@
+A207
+/7`2@
+Kah"
+TChs
+cbB)
+T`&E
+5s")
+5a"@
+h48s
+o7D	
+xfx@
+xfx@
+@9"xbx
+@8"xbx
+ hcx
+kb8?(
+#hcx
+#hcx
+* xbx@
+"hbx
+"hbx
+* xex@
+aK@9
+7`K@9
+Z!{ 
+h"8!
+Z#{!
+eh`8
+i"8!
+eh`8
+_8Ci"8!
+h!8!
+eh`8
+7 4@
+`h|8
+bh`8
+_8ah<8
+h!8!
+7 4@
+k!8?
+`h|8
+S#h"8_
+bh`8
+_8ah<8
+j!8?
+h!8!
+h`8!
+kb8c
+bh`8
+7 4@
+`hv8
+bh`8
+_8`h68
+h!8!
+T"i`8
+bh`8
+7 4@
+`hu8
+_8`h58
+bh`8
+h!8!
+4`K:
+5`K:
+4`H 
+TyB9
+Aktx 
+@y"kb8
+RDk|x
+"ke8
+RbGE
+@h`x
+Gktxh
+@y		@y
+GkgxC
+)kj8I
+T:@@
+ajx8s
+!ks8_
+R"h 
+aj`8
+Raha
+Raha
+Raha
+Raha
+Raha
+Raha
+Raha
+Raha
+Raha
+Raha
+Raha
+Raha
+Ha8a
+Z!@ 
+r"h9
+T9C.
+5`B/
+@za%
+Ha8!
+@9?@
+@9@+
+T`h{
+T`i{
+T!~|
+5`i{
+R!~|
+T`h{
+5`i{
+rAi`
+T!~|
+@9?L
+$@9?
+ @9?P
+$@9?
+(@9?
+,@9`
+(@9?
+(@9?
+$@9?
+$@9 |
+bhbx
+bhbx
+ahax
+`h`x
+bhbx
+bhbx
+o6?(
+R&4@
+@9`z
+@9`z
+Xjxj
+Xdxd
+QB|@
+$h`x
+6!H@
+5`jv8
+K@h!
+#hb8
+hb8$h"8
+TT{u
+TTk"
+5 ks8
+R"h 
+R"h 
+R"h 
+ h`x
+ h`x
+ehex
+P6eys
+(ke8
+T9 @
+T"k`8
+j`8_
+T#k`8"h`8
+R"h 
+ h`x
+ h`x
+%iex
+P6eys
+(ke8
+T9 @
+T"k`8
+j`8_
+T#k`8"h`8
+$hf8
+$hd8
+$hd8
+$hd8
+$hd8
+"hd8
+h"8B
+R"h 
+@9,T
+Bxdx
+@za,
+Tu-07U
+@zLO
+j;8{
+`xgx
+T`&@
+T`"@
+W@7`
+@za/
+@zaB
+_A9?
+TBii
+R<|@
+R(M@
+R6h3
+c$@9
+@9a(
+@9S"
+bhbx
+Ta6@
+!X`x`
+Gh6a
+_x@,h6
+X|x|
+X|x|
+"H 8
+HH 8 
+h"8B
+h48V
+QAX9
+A:`!
+* X9
+@9c7@
+zW7U
+h48#
+@9`X
+ h`8
+a-n6
+@8@'
+@9!hi
+H7 e
+h48H
+@9`{
+E+h7
+%4o7
+h885
+k 8 
+?h 8
+ h`8
+*:Hy
+7[|@
+T`/@
+T!||
+n87`m07
+r 7@
+ H`8
+@z!g
+'R)lP
+RB|@
+k`8%-
+A:a3
+@y`I?6
+R H`8
+R H`8
+?)E|
+`H`8#
+I`8@
+R H`8
+I`8@
+R@H`8
+R@H`8@
+I`8@
+I`8@
+T`F@
+T`F@
+H`8$
+I`8@
+`I`8+
+ I`8)
+KY)?
+KY) 
+I`8@
+T`:@
+5`F@
+RCh!
+R"h 
+R!HF
+R!HF
+!X`x`
+RDh!
+7`2@
+Ta2@9
+7tn@
+5`F@
+2"h 
+Ta&@
+5`&@
+TaR@
+4un@
+7!p@
+TaR@
+2B\P
+R"\P
+T"p@
+TaR@
+X7aR@
+@7`2@
+5tn@
+X7`R@
+@7a2@
+5tn@
+Qd~~
+Ttn@
+X7bR@
+TcR@
+RbR@
+7aR@
+R"h 
+2Ch!
+RCh 
+2dh"
+2Ch!
+TaR@
+R"h 
+TaR@
+7cR@
+2g"@
+5`R@
+TvN@
+T`R@
+5aR@
+Twn@
+ @q!
+T#C@
+5b"@
+TdR@
+TcR@
+Ttn@
+T8 @
+R"h 
+TdR@
+5aJ@
+T |~
+5`F@
+j68 
+5`F@
+R"h 
+@)A0
+KaK!
+Tz+	
+06s2D
+@p@L
+TF8@
+hc8$hc8c
+NAp@Ld
+ nb<!nE
+ nb<!nE
+@p@L
+@9@	
+@8dH"8
+aha8
+aha8!
+aha8
+aha8!
+%L@8$
+@9fhe8ehd8bhb8dh`8
+Az` Dz`
+q` Dz
+OAp@L"
+ nb<!nE
+ nb<!nE
+bj`8a
+j 8!
+`j`8
+ap@L 
+ 6c@
+4ax`
+,@yc
+xcx?
+R"h 
+	K)}B
+T$|@
+RUx`xZ
+K`|@
+@	@z
+R"h 
+J?|@j
+R"h 
+R"h 
+6a:@
+? @qI
+T3|@
+R"h 
+Hs8s
+Xsxs
+Xsxs
+Xsxs
+L@9?
+R"h 
+P@9A
+R"h 
+TB|@
+7Xwx
+"Xwx
+Cz`	
+S`,@8
+ 0@6
+T ]B
+Fy!@
+SgnX
+A=(7
+!{ax
+Tb'B
+Ta3B
+chexc8@
+chexc8@
+Ta7@
+Ta3B
+T`n@
+5a3B
+T`BT
+5cl@
+@@9a
+h9xA
+h9xA
+jb8?
+hcx!
+j 8a
+hcxc
+h`xc
+R"h 
+R"h 
+@8Z_
+*",@
+jz8@
+R"h 
+Xfxb
+R"h 
+<Jm0
+7"%;
+T?w+
+R"h 
+pq!	
+T {!
+j`8_
+j`8a
+_8sB(
+ h`x
+@kb8 
+Jk`8
+4!k`8?
+R#h 
+Rii`8j
+Ak`8AJ
+j`8_
+3kx89
+Bka8b
+-hmxM
+-hmx
+q)i`8 
+jb8A
+j`8_
+*!|$
+jx8 
+R`ia
+`i`x
+`i`x
+`i`x`
+%|@*
+T`+@
+"k`8_
+jb8A
+R"h 
+Ta~@
+R"h 
+T {!
+j`8_
+j`8a
+_8sB(
+ h`x
+@kb8 
+Jk`8J
+4!k`8?
+Rii`8
+Ak`8
+j`8_
+3kx89
+	Pz@
+Bka8b
+,hlxL
+,hlx
+q)i`8 
+jb8A
+j`8_
+*!|$
+jx8 
+`i`x
+`i`x
+`i`x`
+%|@*
+T`+@
+"k`8_
+jb8A
+Ta~@
+="h 
+R"h 
+="h 
+R"h 
+="h 
+T {!
+j`8_
+j`8a
+_8sB(
+ h`x
+@9Jx
+@kb8`
+Jk`8J
+4!k`8?
+R"h 
+Rii`8j
+Ak`8!K
+j`8_
+3kw89
+Bka8b
+-hmxM
+-hmx
+q)i`8 
+kb8!
+j`8_
+*!|$
+jw8 
+R`ia
+i`x`
+RE|@*
+T@+@
+"k`8_
+kb8A
+R"h 
+Ta~@
+R"h 
+QD|@
+T_k3
+T@{s
+*@|`
+=  @
+!H`8`
+=  @
+Td&@
+G6js
+R"h 
+5`F@
+bJP9
+hc8?
+ahu8
+ja8dha8
+`hu8
+ja8bha8
+h`8_
+Cka8
+k 8!
+Akt8
+TAky
+*d @z
+Tg8@
+ic8%hc8c
+<dH"8"
+@9`h`8 
+aha8
+aha8A
+aha8
+%L@8$
+@9ghe8ehd8bhb8dh`8E
+R"h 
+R"h 
+R"h 
+9`{!
+@=07
+4'L'
+T|{t
+@9S 
+T ?B
+Ta4@
+6 KB
+Qaxa
+Rfxa
+TfX 
+7`bC
+4?@ 
+(H7@
+bhbxB8@
+Tahs
+*AO;
+zgx?
+T)Xg
+Fy!x
+7azg
+Fy!x
+TB|}
+"h`x_
+49C!
+@yb8
+4)A!
+4 h`x
+A)B8@
+@z!$
+Fy!t
+KbO4
+T$O5
+7`R@
+4s~}
+T h`
+*"?C
+b{9p
+*@|_
+b{9p
+b{9p
+b{9p
+*@|_
+b{9p
+b{9p
+* |_
+b{9p
+* |_
+b{9p
+4 0 
+* |_
+b{9p
+b{9p
+b{9p
+b{9p
+b{9p
+b{9p
+b{9p
+* |_
+ *@C
+ *`5
+*#<P
+bjx8_ 
+js8b
+ks8s
+{9? 
+{9? 
+Zcxa
+`M9 
+Xcxc
+*cxb
+B`M9b
+B`M9b
+`ks8
+T {s
+T {s
+js8? 
+ajw8
+!hs8? 
+ja8A
+ hb8
+!hb8a
+!@L9?
+c`M9#
+[dxa
+[dxa
+'@9b
+#@9?
++@9?
+T`j`
+VDORVDO1VDO
+N0X=
+N'T>
+N&P?
+N2D<
+@`M9
+B<L9
+h 8_
+Td|}
+*h|}
+=~tE
+4bS 
+aj`8
+*B@#
+*"D 
+4BS$
+Tb~|
+TCS"
+T`"@
+TUL#
+Ss*C
+TBQ"
+6u"@
+T`"@
+A@9n
+J!|@
+4bv~
+4sv~
+J!|@
+4bv~
+b{9p
+b{9p
+b{9p
+* |_
+b{9p
+* |_
+b{9p
+4  `
+b{9p
+=== ENVIRONMENT INFORMATION ===
+Hostname: %s
+Time: %sOS: %s
+Kernel release: %s
+Kernel version: %s
+Hardware platform: %s
+Usage: %s [file]
+uname
+time
+Could not format time
+stdout
+Warning: file '%s' already exists. Information will be appended.
+fopen
+fprintf
+fclose
+Unexpected reloc type in static binary.
+failed to enable GCS: %d
+thunderxt88
+thunderx2t99
+thunderx2t99p1
+ares
+emag
+kunpeng920
+a64fx
+generic
+Fatal glibc error: Cannot allocate TLS block
+cxa_atexit.c
+l != NULL
+func != NULL
+__new_exitfn
+__internal_atexit
+%s%s%s
+(nil)
+vfprintf-internal.c
+(mode_flags & PRINTF_FORTIFY) != 0
+*** invalid %N$ use detected ***
+*** %n in writable segment detected ***
+printf_positional
+(null)
+ glibc: fatal
+Fatal error: glibc detected an invalid stdio handle
+,ccs=
+fileops.c
+fcts.towc_nsteps == 1
+fcts.tomb_nsteps == 1
+_IO_new_file_fopen
+strops.c
+offset >= oldend
+enlarge_userbuf
+The futex facility returned an unexpected error code.
+free(): too many chunks detected in tcache
+free(): unaligned chunk detected in tcache 2
+free(): double free detected in tcache 2
+int_mallinfo(): unaligned fastbin chunk detected
+malloc.c
+chunk_is_mmapped (p)
+munmap_chunk(): invalid pointer
+arena.c
+replaced_arena->attached_threads > 0
+<heap nr="%d">
+<sizes>
+__malloc_info(): unaligned fastbin chunk detected
+  <size from="%zu" to="%zu" total="%zu" count="%zu"/>
+  <unsorted from="%zu" to="%zu" total="%zu" count="%zu"/>
+</sizes>
+<total type="fast" count="%zu" size="%zu"/>
+<total type="rest" count="%zu" size="%zu"/>
+<system type="current" size="%zu"/>
+<system type="max" size="%zu"/>
+<aspace type="total" size="%zu"/>
+<aspace type="mprotect" size="%zu"/>
+<aspace type="subheaps" size="%zu"/>
+<aspace type="total" size="%zu"/>
+<aspace type="mprotect" size="%zu"/>
+</heap>
+<total type="fast" count="%zu" size="%zu"/>
+<total type="rest" count="%zu" size="%zu"/>
+<total type="mmap" count="%d" size="%zu"/>
+<system type="current" size="%zu"/>
+<system type="max" size="%zu"/>
+<aspace type="total" size="%zu"/>
+<aspace type="mprotect" size="%zu"/>
+</malloc>
+corrupted size vs. prev_size
+corrupted double-linked list
+corrupted double-linked list (not small)
+malloc_consolidate(): unaligned fastbin chunk detected
+malloc_consolidate(): invalid chunk size
+corrupted size vs. prev_size in fastbins
+free(): corrupted unsorted chunks
+free(): chunks in smallbin corrupted
+ glibc: malloc arena
+result->attached_threads == 0
+p->attached_threads == 0
+ glibc: malloc
+((INTERNAL_SIZE_T) chunk2mem (mm) & MALLOC_ALIGN_MASK) == 0
+heap->ar_ptr == av
+chunksize_nomask (p) == (0 | PREV_INUSE)
+new_size > 0 && new_size < (long) (2 * MINSIZE)
+new_size > 0 && new_size < max_size
+((unsigned long) ((char *) p + new_size) & (heap->pagesize - 1)) == 0
+((char *) p + new_size) == ((char *) heap + heap->size)
+/proc/sys/vm/overcommit_memory
+double free or corruption (top)
+double free or corruption (out)
+double free or corruption (!prev)
+free(): invalid next size (normal)
+corrupted size vs. prev_size while consolidating
+free(): invalid next size (fast)
+double free or corruption (fasttop)
+invalid fastbin entry (free)
+(old_top == initial_top (av) && old_size == 0) || ((unsigned long) (old_size) >= MINSIZE && prev_inuse (old_top) && ((unsigned long) old_end & (pagesize - 1)) == 0)
+(unsigned long) (old_size) < (unsigned long) (nb + MINSIZE)
+free(): invalid pointer
+break adjusted to free malloc space
+correction >= 0
+((unsigned long) chunk2mem (brk) & MALLOC_ALIGN_MASK) == 0
+free(): invalid size
+malloc(): unaligned fastbin chunk detected 2
+malloc(): unaligned fastbin chunk detected
+malloc(): memory corruption (fast)
+malloc(): unaligned fastbin chunk detected 3
+malloc(): smallbin double linked list corrupted
+malloc(): invalid size (unsorted)
+malloc(): invalid next size (unsorted)
+malloc(): mismatching next->prev_size (unsorted)
+malloc(): unsorted double linked list corrupted
+malloc(): invalid next->prev_inuse (unsorted)
+chunk_main_arena (bck->bk)
+chunk_main_arena (fwd)
+malloc(): largebin double linked list corrupted (nextsize)
+malloc(): largebin double linked list corrupted (bk)
+malloc(): unaligned tcache chunk detected
+malloc(): corrupted unsorted chunks
+bit != 0
+(unsigned long) (size) >= (unsigned long) (nb)
+malloc(): corrupted unsorted chunks 2
+malloc(): corrupted top size
+realloc(): invalid old size
+!chunk_is_mmapped (oldp)
+realloc(): invalid next size
+(unsigned long) (newsize) >= (unsigned long) (nb)
+newsize >= nb && (((unsigned long) (chunk2mem (p))) % alignment) == 0
+!victim || chunk_is_mmapped (mem2chunk (victim)) || &main_arena == arena_for_chunk (mem2chunk (victim))
+!victim || chunk_is_mmapped (mem2chunk (victim)) || ar_ptr == arena_for_chunk (mem2chunk (victim))
+!p || chunk_is_mmapped (mem2chunk (p)) || &main_arena == arena_for_chunk (mem2chunk (p))
+!p || chunk_is_mmapped (mem2chunk (p)) || ar_ptr == arena_for_chunk (mem2chunk (p))
+tcache_thread_shutdown(): unaligned tcache chunk detected
+a->attached_threads > 0
+realloc(): invalid pointer
+mremap_chunk(): invalid pointer
+aligned_OK (chunk2mem (p))
+prev_size (p) == offset
+!newp || chunk_is_mmapped (mem2chunk (newp)) || ar_ptr == arena_for_chunk (mem2chunk (newp))
+!mem || chunk_is_mmapped (mem2chunk (mem)) || av == arena_for_chunk (mem2chunk (mem))
+(char *) chunk2mem (p) + 2 * CHUNK_HDR_SZ <= paligned_mem
+(char *) p + size > paligned_mem
+Arena %d:
+system bytes     = %10u
+in use bytes     = %10u
+Total (incl. mmap):
+max mmap regions = %10u
+max mmap bytes   = %10lu
+<malloc version="1">
+mtrim
+__libc_calloc
+_int_memalign
+_mid_memalign
+_int_realloc
+mremap_chunk
+__libc_realloc
+munmap_chunk
+heap_trim
+_int_free_maybe_consolidate
+sysmalloc_mmap
+sysmalloc
+_int_malloc
+remove_from_free_list
+detach_arena
+get_free_list
+__libc_malloc
+__malloc_arena_thread_freeres
+Unknown error 
+%s%d
+mbsrtowcs_l.c
+status == __GCONV_OK || status == __GCONV_EMPTY_INPUT || status == __GCONV_ILLEGAL_INPUT || status == __GCONV_INCOMPLETE_INPUT || status == __GCONV_FULL_OUTPUT
+((wchar_t *) data.__outbuf)[-1] == L'\0'
+result > 0
+__mbsinit (data.__statep)
+__mbsrtowcs_l
+wcrtomb.c
+__wcrtomb_internal
+Fatal glibc error: gconv module reference counter overflow
+ANSI_X3.4-1968//TRANSLIT
+wcsrtombs.c
+data.__outbuf[-1] == '\0'
+data.__outbuf != (unsigned char *) dst
+__wcsrtombs
+%hu%n:%hu%n:%hu%n
+M%hu.%hu.%hu%n
+Universal
+/etc/localtime
+TZDIR
+%s/%s
+tzfile.c
+tzspec_len > 0
+posixrules
+num_types == 2
+num_types == 1
+strcmp (&zone_names[info->idx], __tzname[tp->tm_isdst]) == 0
+__tzfile_compute
+__tzfile_read
+../sysdeps/unix/sysv/linux/getpagesize.c
+GLRO(dl_pagesize) != 0
+__getpagesize
+../sysdeps/unix/sysv/linux/getsysstats.c
+*cp <= *re
+/proc/stat
+/sys/devices/system/cpu/online
+/sys/devices/system/cpu/possible
+next_line
+/sys/kernel/mm/transparent_hugepage/hpage_pmd_size
+/sys/kernel/mm/transparent_hugepage/enabled
+/proc/meminfo
+Hugepagesize:
+/sys/kernel/mm/hugepages
+hugepages-
+buffer overflow detected
+*** %s ***: terminated
+/proc/self/maps
+stack smashing detected
+file too short
+cannot read file data
+ELF file data encoding not little-endian
+ELF file version does not match current one
+only ET_DYN and ET_EXEC can be loaded
+ELF file's phentsize not the expected size
+invalid ELF header
+internal error
+nonzero padding in e_ident
+ELF file ABI version invalid
+ELF file version ident does not match current one
+ELF file OS ABI invalid
+<main program>
+ search path=
+		(%s from file %s)
+		(%s)
+  trying file=%s
+cannot allocate name record
+dl-load.c
+lastp != NULL
+ORIGIN
+PLATFORM
+lib/aarch64-linux-gnu
+(l)->l_name[0] == '\0' || is_rtld_link_map (l)
+cannot create cache for search path
+cannot create RUNPATH/RPATH copy
+cannot create search path array
+system search path
+pelem->dirname[0] == '/'
+l->l_type != lt_loaded
+RUNPATH
+RPATH
+cannot close file descriptor
+cannot allocate memory for program header
+cannot dynamically load position-independent executable
+cannot enable executable stack as shared object requires
+shared object cannot be dlopen()ed
+cannot create shared object descriptor
+cannot stat shared object
+ELF load command address/offset not page-aligned
+cannot change memory protections
+cannot map zero-fill pages
+failed to map segment from shared object
+object file has no loadable segments
+cannot dynamically load executable
+object file has no dynamic section
+nsid == LM_ID_BASE
+file=%s [%lu];  generating link map
+false && "TLS not initialized in static application"
+get-dynamic-info.h
+info[DT_PLTREL]->d_un.d_val == DT_RELA
+info[DT_RELAENT]->d_un.d_val == sizeof (ElfW(Rela))
+info[DT_RELRENT]->d_un.d_val == sizeof (ElfW(Relr))
+WARNING: Unsupported flag value(s) of 0x%x in DT_FLAGS_1.
+type != ET_EXEC || l->l_type == lt_executable
+  dynamic: 0x%0*lx  base: 0x%0*lx   size: 0x%0*zx
+    entry: 0x%0*lx  phdr: 0x%0*lx  phnum:   %*u
+libc.so.6
+r->r_state == RT_ADD
+file=%s [%lu];  needed by %s [%lu]
+file=%s [%lu];  dynamically loaded by %s [%lu]
+nsid >= 0
+nsid < GL(dl_nns)
+find library=%s [%lu]; searching
+wrong ELF class: ELFCLASS32
+cannot open shared object file
+_dl_notify_new_object
+elf_get_dynamic_info
+_dl_map_object_from_fd
+add_name_to_object
+_dl_map_object
+expand_dynamic_string_token
+_dl_init_paths
+/proc/self/exe
+../sysdeps/unix/sysv/linux/dl-origin.c
+linkval[0] == '/'
+_dl_get_origin
+dl-printf.c
+pid >= 0 && sizeof (pid_t) <= 4
+niov < NIOVMAX
+width < IFMTSIZE
+! "invalid format specifier"
+_dl_debug_vdprintf
+dl-setup_hash.c
+(bitmask_nwords & (bitmask_nwords - 1)) == 0
+_dl_setup_hash
+cannot allocate memory for thread-local data: ABORT
+dl-tls.c
+listp->slotinfo[cnt].gen <= GL(dl_tls_generation)
+map->l_tls_modid == total + cnt
+map->l_tls_blocksize >= map->l_tls_initimage_size
+listp != NULL
+Failed loading %lu audit modules, %lu are supported.
+result <= GL(dl_tls_max_dtv_idx) + 1
+result == GL(dl_tls_max_dtv_idx) + 1
+idx == 0
+cannot create TLS data structures
+dlopen
+_dl_add_to_slotinfo
+_dl_allocate_tls_init
+_dl_assign_tls_modid
+GLIBC_TUNABLES
+WARNING: ld.so: invalid GLIBC_TUNABLES `%s': ignored.
+WARNING: ld.so: invalid GLIBC_TUNABLES value `%.*s' for option `%s': ignored.
+%s: 
+%d (min: %d, max: %d)
+0x%lx (min: 0x%lx, max: 0x%lx)
+0x%zx (min: 0x%zx, max: 0x%zx)
+%.*s
+/etc/ld.so.cache
+ search cache=%s
+glibc-ld.so.cache1.1
+ld.so-1.7.0
+dl-cache.c
+cache != NULL
+_dl_load_cache_lookup
+%s: %s: failed to turn on BTI protection
+failed to turn on BTI protection
+not GCS compatible
+%s: %s: %s
+unsupported GCS policy
+dl-support.c
+__ehdr_start.e_phentsize == sizeof *GL(dl_phdr)
+setup-vdso.h
+ph->p_type != PT_TLS
+__kernel_clock_gettime
+__kernel_gettimeofday
+__kernel_clock_getres
+__kernel_getrandom
+LD_WARN
+LD_LIBRARY_PATH
+LD_BIND_NOW
+LD_BIND_NOT
+LD_DYNAMIC_WEAK
+LINUX_2.6.39
+setup_vdso
+_dl_aux_init
+/dev/full
+/dev/null
+gconv_db.c
+step->__end_fct == NULL
+__gconv_release_step
+gconv_conf.c
+result == NULL
+elem != NULL
+cwd != NULL
+/usr/lib/aarch64-linux-gnu/gconv
+module
+.conf
+gconv-modules
+__gconv_get_path
+ISO-10646/UCS4/
+=INTERNAL->ucs4
+=ucs4->INTERNAL
+UCS-4LE//
+=INTERNAL->ucs4le
+=ucs4le->INTERNAL
+ISO-10646/UTF8/
+=INTERNAL->utf8
+=utf8->INTERNAL
+ISO-10646/UCS2/
+=ucs2->INTERNAL
+=INTERNAL->ucs2
+ANSI_X3.4-1968//
+=ascii->INTERNAL
+=INTERNAL->ascii
+UNICODEBIG//
+=ucs2reverse->INTERNAL
+=INTERNAL->ucs2reverse
+gconv_builtin.c
+cnt < sizeof (map) / sizeof (map[0])
+__gconv_get_builtin_trans
+../iconv/skeleton.c
+outbufstart == NULL
+outbuf == outerr
+nstatus == __GCONV_FULL_OUTPUT
+cnt_after <= sizeof (data->__statep->__value.__wchb)
+gconv_simple.c
+*outptrp + 4 > outend
+../iconv/loop.c
+(state->__count & 7) <= sizeof (state->__value)
+inlen_after <= sizeof (state->__value.__wchb)
+inptr - bytebuf > (state->__count & 7)
+inend != &bytebuf[MAX_NEEDED_INPUT]
+inend - inptr > (state->__count & ~7)
+inend - inptr <= sizeof (state->__value.__wchb)
+ch != 0xc0 && ch != 0xc1
+internal_ucs2reverse_loop_single
+__gconv_transform_internal_ucs2reverse
+ucs2reverse_internal_loop_single
+__gconv_transform_ucs2reverse_internal
+internal_ucs2_loop_single
+__gconv_transform_internal_ucs2
+ucs2_internal_loop_single
+__gconv_transform_ucs2_internal
+utf8_internal_loop_single
+__gconv_transform_utf8_internal
+internal_utf8_loop_single
+__gconv_transform_internal_utf8
+internal_ascii_loop_single
+__gconv_transform_internal_ascii
+__gconv_transform_ascii_internal
+ucs4le_internal_loop
+__gconv_transform_ucs4le_internal
+__gconv_transform_internal_ucs4le
+__gconv_transform_ucs4_internal
+__gconv_transform_internal_ucs4
+GCONV_PATH
+/usr/lib/aarch64-linux-gnu/gconv/gconv-modules.cache
+gconv_dl.c
+obj->counter > 0
+found->handle == NULL
+gconv
+gconv_init
+gconv_end
+do_release_shlib
+__gconv_find_shlib
+LOCPATH
+ANSI_X3.4-1968
+POSIX
+libc
+Fatal glibc error: %s:%s (%s): assertion failed: %s
+OUTPUT_CHARSET
+charset=
+LANGUAGE
+messages
+/locale.alias
+/usr/share/locale
+plural=
+nplurals=
+ glibc: getrandom
+ glibc: getrandom states
+../sysdeps/unix/sysv/linux/getrandom.c
+grnd_alloc.len < grnd_alloc.cap
+__getrandom_reset_state
+grouping_iterator.c
+it->remaining > 0
+__grouping_iterator_next
+Xprintf_buffer_pad_1.c
+buf->write_ptr != buf->write_end
+__printf_buffer_pad_1
+Xprintf_buffer_putc_1.c
+buf->write_ptr < buf->write_end
+__printf_buffer_putc_1
+Xprintf_buffer_puts_1.c
+__printf_buffer_puts_1
+printf_buffer_to_file.c
+buf->base.write_end == buf->fp->_IO_write_end
+__printf_buffer_flush_to_file
+Xprintf_buffer_write.c
+__printf_buffer_write
+printf_fp.c
+cy == 1 || (p.frac[p.fracsize - 2] == 0 && p.frac[0] == 0)
+incr <= powers->p_expo
+cy == 0 || p.tmp[p.tmpsize - 1] < 20
+p.frac[p.fracsize - 1] < 10
+0 <= p.exponent && p.exponent < 3 && p.exponent + to_shift < BITS_PER_MP_LIMB
+p.expsign == 0 || intdig_max == 1
+wcp >= wstartp + 1
+wstartp[0] == '1'
+0.0001
+__printf_fp_buffer_1
+../stdio-common/printf_fphex.c
+info->extra == 0
+__printf_fphex_buffer
+translated_number_width.c
+'0' <= *p && *p <= '9'
+__translated_number_width
+to_inpunct
+vfscanf-internal.c
+cnt < MB_LEN_MAX
+__vfscanf_internal
+__wprintf_buffer_pad_1
+__wprintf_buffer_putc_1
+__wprintf_buffer_write
+Success
+Operation not permitted
+No such file or directory
+No such process
+Interrupted system call
+Input/output error
+No such device or address
+Argument list too long
+Exec format error
+Bad file descriptor
+No child processes
+Resource temporarily unavailable
+Cannot allocate memory
+Permission denied
+Bad address
+Block device required
+Device or resource busy
+File exists
+Invalid cross-device link
+No such device
+Not a directory
+Is a directory
+Invalid argument
+Too many open files in system
+Too many open files
+Inappropriate ioctl for device
+Text file busy
+File too large
+No space left on device
+Illegal seek
+Read-only file system
+Too many links
+Broken pipe
+Numerical argument out of domain
+Numerical result out of range
+Resource deadlock avoided
+File name too long
+No locks available
+Function not implemented
+Directory not empty
+Too many levels of symbolic links
+No message of desired type
+Identifier removed
+Channel number out of range
+Level 2 not synchronized
+Level 3 halted
+Level 3 reset
+Link number out of range
+Protocol driver not attached
+No CSI structure available
+Level 2 halted
+Invalid exchange
+Invalid request descriptor
+Exchange full
+No anode
+Invalid request code
+Invalid slot
+Bad font file format
+Device not a stream
+No data available
+Timer expired
+Out of streams resources
+Machine is not on the network
+Package not installed
+Object is remote
+Link has been severed
+Advertise error
+Srmount error
+Communication error on send
+Protocol error
+Multihop attempted
+RFS specific error
+Bad message
+Value too large for defined data type
+Name not unique on network
+File descriptor in bad state
+Remote address changed
+Can not access a needed shared library
+Accessing a corrupted shared library
+.lib section in a.out corrupted
+Attempting to link in too many shared libraries
+Cannot exec a shared library directly
+Invalid or incomplete multibyte or wide character
+Interrupted system call should be restarted
+Streams pipe error
+Too many users
+Socket operation on non-socket
+Destination address required
+Message too long
+Protocol wrong type for socket
+Protocol not available
+Protocol not supported
+Socket type not supported
+Operation not supported
+Protocol family not supported
+Address family not supported by protocol
+Address already in use
+Cannot assign requested address
+Network is down
+Network is unreachable
+Network dropped connection on reset
+Software caused connection abort
+Connection reset by peer
+No buffer space available
+Transport endpoint is already connected
+Transport endpoint is not connected
+Cannot send after transport endpoint shutdown
+Too many references: cannot splice
+Connection timed out
+Connection refused
+Host is down
+No route to host
+Operation already in progress
+Operation now in progress
+Stale file handle
+Structure needs cleaning
+Not a XENIX named type file
+No XENIX semaphores available
+Is a named type file
+Remote I/O error
+Disk quota exceeded
+No medium found
+Wrong medium type
+Operation canceled
+Required key not available
+Key has expired
+Key has been revoked
+Key was rejected by service
+Owner died
+State not recoverable
+Operation not possible due to RF-kill
+Memory page has hardware error
+wfileops.c
+status == __codecvt_partial
+_IO_wfile_underflow
+iofwide.c
+_IO_fwide
+e != EDEADLK || (kind != PTHREAD_MUTEX_ERRORCHECK_NP && kind != PTHREAD_MUTEX_RECURSIVE_NP)
+e != ESRCH || !robust
+robust || (oldval & FUTEX_OWNER_DIED) == 0
+mutex->__data.__owner == 0
+PTHREAD_MUTEX_TYPE (mutex) == PTHREAD_MUTEX_ERRORCHECK_NP
+__pthread_mutex_lock_full
+___pthread_mutex_lock
+pthread_mutex_unlock.c
+type == PTHREAD_MUTEX_ERRORCHECK_NP
+__pthread_mutex_unlock_usercnt
+tpp.c
+new_prio == -1 || (new_prio >= fifo_min_prio && new_prio <= fifo_max_prio)
+previous_prio == -1 || (previous_prio >= fifo_min_prio && previous_prio <= fifo_max_prio)
+__pthread_tpp_change_priority
+Fatal glibc error: invalid allocation buffer of size %zu
+mbrtowc.c
+__mbrtowc
+/proc/sys/kernel/rtsig-max
+../sysdeps/unix/sysv/linux/sysconf.c
+GLRO(dl_minsigstacksize) != 0
+../sysdeps/unix/sysv/linux/sysconf-sigstksz.h
+minsigstacksize != 0
+/proc/sys/kernel/ngroups_max
+../sysdeps/unix/sysv/linux/sysconf-pthread_stack_min.h
+pthread_stack_min != 0
+__get_pthread_stack_min
+sysconf_sigstksz
+linux_sysconf
+../sysdeps/unix/sysv/linux/getcwd.c
+errno != ERANGE || buf != NULL || size != 0
+__getcwd
+<program name unknown>
+error while loading shared libraries
+%s: %s: %s%s%s%s%s
+DYNAMIC LINKER BUG!!!
+Fatal error: length accounting in _dl_exception_create_format
+Fatal error: invalid format in exception string
+out of memory
+Fatal glibc error: executable stack is not allowed
+Fatal glibc error: cannot enable executable stack as tunable requires
+symbol=%s;  lookup in file=%s [%lu]
+warning: copy relocation against non-copyable protected symbol `%s' in `%s'
+warning: direct reference to protected function `%s' in `%s' may break pointer equality
+error due to GNU_PROPERTY_1_NEEDED_INDIRECT_EXTERN_ACCESS
+out of memory
+marking %s [%lu] as NODELETE due to unique symbol
+, version 
+protected
+normal
+dl-lookup.c
+version == NULL || !(flags & DL_LOOKUP_RETURN_NEWEST)
+undefined symbol: %s%s%s
+symbol lookup error
+marking %s [%lu] as NODELETE due to reference from main program
+marking %s [%lu] as NODELETE due to reference from %s [%lu]
+marking %s [%lu] as NODELETE due to memory allocation failure
+file=%s [%lu];  needed by %s [%lu] (relocation dependency)
+binding file %s [%lu] to %s [%lu]: %s symbol `%s'
+ [%s]
+_dl_lookup_symbol_x
+cannot allocate memory in static TLS block
+ (lazy)
+cannot make segment writable for relocation
+cannot restore segment prot after reloc
+relocation processing: %s%s
+%s: Symbol `%s' has different size in shared object, consider re-linking
+%s: out of memory to store relocation results for %s
+GLIBC_PRIVATE
+gconv.c
+irreversible != NULL
+outbuf != NULL && *outbuf != NULL
+__gconv
+/TRANSLIT
+,TRANSLIT
+/IGNORE
+,IGNORE
+LC_ALL
+LANG
+findlocale.c
+locale_codeset != NULL
+/../
+_nl_find_locale
+loadarchive.c
+headmap.len == archive_stat.st_size
+archmapped == &headmap
+_nl_archive_subfreeres
+_nl_load_locale_from_archive
+loadlocale.c
+category == LC_CTYPE
+/SYS_
+_nl_intern_locale_data
+%a%N%f%N%d%N%b%N%s %h %e %r%N%C-%z %T%N%c%N
+ISO/IEC 14652 i18n FDCC-set
+ISO/IEC JTC1/SC22/WG20 - internationalization
+C/o Keld Simonsen, Skt. Jorgens Alle 8, DK-1615 Kobenhavn V
+Keld Simonsen
+keld@dkuug.dk
++45 3122-6543
++45 3325-6543
+1997-12-20
+^[yY]
+^[nN]
+%p%t%g%t%m%t%f
++%c %a %l
+Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+January
+February
+March
+April
+June
+July
+August
+September
+October
+November
+December
+%a %b %e %H:%M:%S %Y
+%m/%d/%y
+%H:%M:%S
+%I:%M:%S %p
+%a %b %e %H:%M:%S %Z %Y
+strtod_l.c
+*nsize < MPNSIZE
+decimal_len > 0
+inity
+dig_no <= (uintmax_t) INTMAX_MAX
+int_no <= (uintmax_t) (INTMAX_MAX + MIN_EXP - MANT_DIG) / 4
+lead_zero == 0 && int_no <= (uintmax_t) INTMAX_MAX / 4
+lead_zero <= (uintmax_t) (INTMAX_MAX - MAX_EXP - 3) / 4
+int_no <= (uintmax_t) (INTMAX_MAX + MIN_10_EXP - MANT_DIG)
+lead_zero == 0 && int_no <= (uintmax_t) INTMAX_MAX
+lead_zero <= (uintmax_t) (INTMAX_MAX - MAX_10_EXP - 1)
+dig_no >= int_no
+lead_zero <= (base == 16 ? (uintmax_t) INTMAX_MAX / 4 : (uintmax_t) INTMAX_MAX)
+lead_zero <= (base == 16 ? ((uintmax_t) exponent - (uintmax_t) INTMAX_MIN) / 4 : ((uintmax_t) exponent - (uintmax_t) INTMAX_MIN))
+bits != 0
+int_no <= (uintmax_t) (exponent < 0 ? (INTMAX_MAX - bits + 1) / 4 : (INTMAX_MAX - exponent - bits + 1) / 4)
+dig_no > int_no && exponent <= 0 && exponent >= MIN_10_EXP - (DIG + 2)
+digcnt > 0
+int_no > 0 && exponent == 0
+int_no == 0 && *startp != L_('0')
+need_frac_digits > 0
+numsize == 1 && n < d
+numsize == densize
+cy != 0
+str_to_mpn
+____strtod_l_internal
+____strtof_l_internal
+./strtod_l.c
+numsize < RETURN_LIMB_SIZE
+____strtold_l_internal
+rshift.c
+usize != 0 && cnt != 0
+__mpn_rshift
+printf_buffer_as_file.c
+file->stream._IO_write_ptr >= file->next->write_ptr
+file->stream._IO_write_ptr <= file->next->write_end
+file->stream._IO_write_base == file->next->write_base
+file->stream._IO_write_end == file->next->write_end
+__printf_buffer_as_file_commit
+Xprintf_buffer_flush.c
+__printf_buffer_flush
+wprintf_buffer_as_file.c
+file->wide_stream._IO_write_ptr >= file->next->write_ptr
+file->wide_stream._IO_write_ptr <= file->next->write_end
+file->wide_stream._IO_write_base == file->next->write_base
+file->wide_stream._IO_write_end == file->next->write_end
+__wprintf_buffer_as_file_commit
+__wprintf_buffer_flush
+dl-close.c
+! should_be_there
+closing file=%s; direct_opencount=%u
+idx == nloaded
+(*lp)->l_idx >= 0 && (*lp)->l_idx < nloaded
+jmap->l_idx >= 0 && jmap->l_idx < nloaded
+imap->l_ns == nsid
+imap->l_type == lt_loaded && !imap->l_nodelete_active
+tmap->l_ns == nsid
+cannot create scope list
+dlclose
+imap->l_type == lt_loaded
+imap->l_prev != NULL
+file=%s [%lu];  destroying link map
+TLS generation counter wrapped!  Please report as described in <http://www.debian.org/Bugs/>.
+shared object not open
+remove_slotinfo
+_dl_close_worker
+dl-find_object.c
+ns == l->l_ns
+Fatal glibc error: cannot allocate memory for find-object data
+result->allocated >= size
+remaining_to_add > 0
+remaining_to_add == 0
+target_seg_index1 == 0
+_dlfo_mappings_segment_allocate
+_dl_find_object_update_1
+_dl_find_object_slow
+dl-open.c
+new_nlist < ns->_ns_global_scope_alloc
+add %s [%lu] to global scope
+added <= ns->_ns_global_scope_pending_adds
+opening file=%s [%lu]; direct_opencount=%u
+cannot extend global scope
+invalid mode for dlopen()
+no more namespaces available for dlmopen()
+invalid target namespace in dlmopen()
+r_state == RT_CONSISTENT
+object=%s [%lu]
+ scope %u:
+ no scope
+mode & RTLD_NOLOAD
+marking %s [%lu] as NODELETE
+ld-linux-aarch64.so.1
+activating NODELETE for %s [%lu]
+cnt + 1 < imap->l_scope_max
+cannot allocate address lookup data
+TLS generation counter wrapped!  Please report this.
+imap->l_need_tls_init == 0
+add_to_global_update
+update_tls_slotinfo
+update_scopes
+dl_open_worker_begin
+_dl_open
+_dl_find_dso_for_object
+dl-runtime.c
+ELFW(R_TYPE)(reloc->r_info) == ELF_MACHINE_JMP_SLOT
+_dl_fixup
+dl-sort-maps.c
+rpo_head == rpo
+maps_head == maps
+i < nmaps
+_dl_sort_maps_dfs
+unsupported version %s of Verneed record
+dl-version.c
+needed != NULL
+checking for version `%s' in file %s [%lu] required by file %s [%lu]
+no version information available (required by %s)
+def_offset != 0
+unsupported version %s of Verdef record
+weak version `%s' not found (required by %s)
+version `%s' not found (required by %s)
+version lookup error
+GLIBC_ABI_DT_RELR
+cannot allocate version reference table
+libc.so.
+libwidevinecdm
+DT_RELR without GLIBC_ABI_DT_RELR dependency
+match_symbol
+_dl_check_map_versions
+_rtld_global_ro
+rtld_static_init.c
+sym != NULL
+__rtld_static_init
+%s%s%s
+%s%s%s: %m
+unsupported dlinfo request
+invalid namespace
+invalid mode parameter
+__libc_early_init
+dl-call-libc-early-init.c
+_dl_call_libc_early_init
+calling fini: %s [%lu]
+cannot allocate dependency buffer
+DST not allowed in SUID/SGID programs
+dl-deps.c
+cannot load auxiliary `%s' because of empty dynamic string token substitution
+empty dynamic string token substitution
+load auxiliary object=%s requested by file=%s
+cannot allocate dependency list
+map->l_searchlist.r_list == NULL
+cannot allocate symbol search list
+map_index < nlist
+_dl_map_object_deps
+dl-init.c
+l->l_relocated || l->l_type == lt_executable
+calling init: %s
+calling preinit: %s
+call_init
+RTLD_NEXT used in code not dynamically loaded
+../nptl/pthread_mutex_lock.c
+(mutex_kind & PTHREAD_MUTEX_PRIO_INHERIT_NP) != 0
+(mutex_kind & PTHREAD_MUTEX_ROBUST_NORMAL_NP) == 0
+(mutex_kind & PTHREAD_MUTEX_PSHARED_BIT) == 0
+__pthread_mutex_cond_lock_adjust
+__pthread_mutex_cond_lock_full
+__pthread_mutex_cond_lock
+ld.so-1.
+EPERM
+ENOENT
+ESRCH
+EINTR
+ENXIO
+E2BIG
+ENOEXEC
+EBADF
+ECHILD
+EDEADLK
+ENOMEM
+EACCES
+EFAULT
+ENOTBLK
+EBUSY
+EEXIST
+EXDEV
+ENODEV
+ENOTDIR
+EISDIR
+EINVAL
+EMFILE
+ENFILE
+ENOTTY
+ETXTBSY
+EFBIG
+ENOSPC
+ESPIPE
+EROFS
+EMLINK
+EPIPE
+EDOM
+ERANGE
+EAGAIN
+EINPROGRESS
+EALREADY
+ENOTSOCK
+EMSGSIZE
+EPROTOTYPE
+ENOPROTOOPT
+EPROTONOSUPPORT
+ESOCKTNOSUPPORT
+EOPNOTSUPP
+EPFNOSUPPORT
+EAFNOSUPPORT
+EADDRINUSE
+EADDRNOTAVAIL
+ENETDOWN
+ENETUNREACH
+ENETRESET
+ECONNABORTED
+ECONNRESET
+ENOBUFS
+EISCONN
+ENOTCONN
+EDESTADDRREQ
+ESHUTDOWN
+ETOOMANYREFS
+ETIMEDOUT
+ECONNREFUSED
+ELOOP
+ENAMETOOLONG
+EHOSTDOWN
+EHOSTUNREACH
+ENOTEMPTY
+EUSERS
+EDQUOT
+ESTALE
+EREMOTE
+ENOLCK
+ENOSYS
+EILSEQ
+EBADMSG
+EIDRM
+EMULTIHOP
+ENODATA
+ENOLINK
+ENOMSG
+ENOSR
+ENOSTR
+EOVERFLOW
+EPROTO
+ETIME
+ECANCELED
+EOWNERDEAD
+ENOTRECOVERABLE
+ERESTART
+ECHRNG
+EL2NSYNC
+EL3HLT
+EL3RST
+ELNRNG
+EUNATCH
+ENOCSI
+EL2HLT
+EBADE
+EBADR
+EXFULL
+ENOANO
+EBADRQC
+EBADSLT
+EBFONT
+ENONET
+ENOPKG
+EADV
+ESRMNT
+ECOMM
+EDOTDOT
+ENOTUNIQ
+EBADFD
+EREMCHG
+ELIBACC
+ELIBBAD
+ELIBSCN
+ELIBMAX
+ELIBEXEC
+ESTRPIPE
+EUCLEAN
+ENOTNAM
+ENAVAIL
+EISNAM
+EREMOTEIO
+ENOMEDIUM
+EMEDIUMTYPE
+ENOKEY
+EKEYEXPIRED
+EKEYREVOKED
+EKEYREJECTED
+ERFKILL
+EHWPOISON
+glibc-ld.so.cach
+/usr/share/zoneinfo
+always madvise [never]
+always [madvise] never
+[always] madvise never
+/usr/share/locale
+0123456789abcdefghijklmnopqrstuvwxyz
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+%.3s %.3s%3d %.2d:%.2d:%.2d %d
+cannot apply additional memory protection after relocation
+/usr/lib/locale
+/usr/lib/locale/locale-archive
+FATAL: __libc_arm_za_disable failed.
+/lib/aarch64-linux-gnu/
+/usr/lib/aarch64-linux-gnu/
+/lib/
+/usr/lib/
+GCONV_PATH
+GETCONF_DIR
+GLIBC_TUNABLES
+HOSTALIASES
+LD_AUDIT
+LD_BIND_NOT
+LD_BIND_NOW
+LD_DEBUG
+LD_DEBUG_OUTPUT
+LD_DYNAMIC_WEAK
+LD_LIBRARY_PATH
+LD_ORIGIN_PATH
+LD_PRELOAD
+LD_PROFILE
+LD_SHOW_AUXV
+LD_VERBOSE
+LD_WARN
+LOCALDOMAIN
+LOCPATH
+MALLOC_ARENA_MAX
+MALLOC_ARENA_TEST
+MALLOC_MMAP_MAX_
+MALLOC_MMAP_THRESHOLD_
+MALLOC_PERTURB_
+MALLOC_TOP_PAD_
+MALLOC_TRACE
+MALLOC_TRIM_THRESHOLD_
+NIS_PATH
+NLSPATH
+RESOLV_HOST_CONF
+RES_OPTIONS
+TMPDIR
+TZDIR
+asimd
+evtstrm
+pmull
+sha1
+sha2
+crc32
+atomics
+fphp
+asimdhp
+cpuid
+asimdrdm
+jscvt
+fcma
+lrcpc
+dcpop
+sha3
+asimddp
+sha512
+asimdfhm
+uscat
+ilrcpc
+flagm
+ssbs
+paca
+pacg
+UCS4//
+ISO-10646/UCS4/
+UCS-4//
+ISO-10646/UCS4/
+UCS-4BE//
+ISO-10646/UCS4/
+CSUCS4//
+ISO-10646/UCS4/
+ISO-10646//
+ISO-10646/UCS4/
+10646-1:1993//
+ISO-10646/UCS4/
+10646-1:1993/UCS4/
+ISO-10646/UCS4/
+OSF00010104//
+ISO-10646/UCS4/
+OSF00010105//
+ISO-10646/UCS4/
+OSF00010106//
+ISO-10646/UCS4/
+WCHAR_T//
+INTERNAL
+UTF8//
+ISO-10646/UTF8/
+UTF-8//
+ISO-10646/UTF8/
+ISO-IR-193//
+ISO-10646/UTF8/
+OSF05010001//
+ISO-10646/UTF8/
+ISO-10646/UTF-8/
+ISO-10646/UTF8/
+UCS2//
+ISO-10646/UCS2/
+UCS-2//
+ISO-10646/UCS2/
+OSF00010100//
+ISO-10646/UCS2/
+OSF00010101//
+ISO-10646/UCS2/
+OSF00010102//
+ISO-10646/UCS2/
+ANSI_X3.4//
+ANSI_X3.4-1968//
+ISO-IR-6//
+ANSI_X3.4-1968//
+ANSI_X3.4-1986//
+ANSI_X3.4-1968//
+ISO_646.IRV:1991//
+ANSI_X3.4-1968//
+ASCII//
+ANSI_X3.4-1968//
+ISO646-US//
+ANSI_X3.4-1968//
+US-ASCII//
+ANSI_X3.4-1968//
+US//
+ANSI_X3.4-1968//
+IBM367//
+ANSI_X3.4-1968//
+CP367//
+ANSI_X3.4-1968//
+CSASCII//
+ANSI_X3.4-1968//
+OSF00010020//
+ANSI_X3.4-1968//
+UNICODELITTLE//
+ISO-10646/UCS2/
+UCS-2LE//
+ISO-10646/UCS2/
+UCS-2BE//
+UNICODEBIG//
+LC_COLLATE
+LC_CTYPE
+LC_MONETARY
+LC_NUMERIC
+LC_TIME
+LC_MESSAGES
+LC_PAPER
+LC_NAME
+LC_ADDRESS
+LC_TELEPHONE
+LC_MEASUREMENT
+LC_IDENTIFICATION
+?HP[hw
+630,($ 
+UUUUUUUU
+?33333333
+UUUUUUU
+P^Cy
+^B{	$I
+$*!-
+unexpected reloc type 0x
+unexpected PLT reloc type 0x
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+upper
+lower
+alpha
+digit
+xdigit
+space
+print
+graph
+blank
+cntrl
+punct
+alnum
+toupper
+tolower
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+i18n:1999
+]xEc
+[Am-
+kpnJ
+uD;s
+)r+[
+[!|n
+uYD?e
+I9C-
+I!G.
+U^h6LU3
+U.y`
+3?Cy
+'_Djz
+$po?b
+w};u
+=t%j
+MP0!
+t0tv
+=u8Q)+
+*~xx
+~j2=
+|;#o
+Ac+;
+^2XX%
+!{>;b
+dI@B
+2I%%
+d&R4
+cIdSP
+kDs,
+"ZzY8<{j
+H%Mx7@.,
+<{O+
+eUkJL
+$~r<
+=6Zn1
+]4%C(
+6~W^
+zZ W
+$?!k
+XZ1J
+6:X6k
+6Q"U757
+*,W7
+PEt\
+HeS;JG
+f9Du0
+Aa6ky
+_c	Z
+LGBs
+#`R(
+%;oo3bEj3
+](9$
+P831
+S|YU
+S-'g(
+wN<G
+:o9s
+Nus^
+w "_
+s%{^%
+~rf0
+QB"U
+{[P`x
+J3]Gm
+us&`
+	~3 Y2
+pZ|<<
+To<zV
+RX>oP
+go4b i)
+NM?]P
+r)hV
+Cb6'
+MW&f*
+k1d5
+B;)!
+dISoy}h
+[@$>
+4otDHl
+5pw-e
+zW5N=
+Ols5
+ct	R
+exK>
+6Xg:
+~K(=
+I[Lm
+%W@q
+qioq
+WFYa,
+r/ZXk
+r1hTsN
+'wuH
+tLP|L
+0Kuv
+7]9	
+%:ShD
+% Mqz<
+hik;
+_kI;j]
+d;Vg
+G&.!
+`7>V
+/T7B@
+'=I&
+=G?R
+~DW&
+qQ$m
+MD}9
+!%uGD6n
+:F4.(
+zPLR
+OA-A
+glibc.cpu.aarch64_gcs
+glibc.cpu.name
+glibc.elision.enable
+glibc.elision.skip_lock_after_retries
+glibc.elision.skip_lock_busy
+glibc.elision.skip_lock_internal_abort
+glibc.elision.skip_trylock_internal_abort
+glibc.elision.tries
+glibc.gmon.maxarcs
+glibc.gmon.minarcs
+glibc.malloc.arena_max
+MALLOC_ARENA_MAX
+glibc.malloc.arena_test
+MALLOC_ARENA_TEST
+glibc.malloc.check
+MALLOC_CHECK_
+glibc.malloc.hugetlb
+glibc.malloc.mmap_max
+MALLOC_MMAP_MAX_
+glibc.malloc.mmap_threshold
+MALLOC_MMAP_THRESHOLD_
+glibc.malloc.mxfast
+glibc.malloc.perturb
+MALLOC_PERTURB_
+glibc.malloc.tcache_count
+glibc.malloc.tcache_max
+glibc.malloc.tcache_unsorted_limit
+glibc.malloc.top_pad
+MALLOC_TOP_PAD_
+glibc.malloc.trim_threshold
+MALLOC_TRIM_THRESHOLD_
+glibc.mem.decorate_maps
+glibc.mem.tagging
+glibc.pthread.mutex_spin_count
+glibc.pthread.rseq
+glibc.pthread.stack_cache_size
+glibc.pthread.stack_hugetlb
+glibc.rtld.dynamic_sort
+glibc.rtld.enable_secure
+glibc.rtld.execstack
+glibc.rtld.nns
+glibc.rtld.optional_static_tls
+GCC: (Debian 14.2.0-19) 14.2.0
+!X .
+_IO_buf_end
+fopen
+_old_offset
+timestamp
+version
+current_time
+_IO_save_end
+short int
+_IO_lock_t
+_IO_write_ptr
+_flags
+ctime
+_IO_buf_base
+file
+_markers
+_IO_read_end
+_freeres_buf
+__domainname
+stderr
+_lock
+uname
+long int
+stream
+_cur_column
+perror
+utsname
+fprintf
+argv
+fflush
+_IO_FILE
+release
+unsigned char
+_prevchain
+GNU C11 14.2.0 -mlittle-endian -mabi=lp64 -g -O2 -std=c11 -fasynchronous-unwind-tables
+argc
+_IO_marker
+_shortbuf
+_IO_write_base
+_unused2
+_IO_read_ptr
+short unsigned int
+main
+_freeres_list
+fclose
+sysname
+__builtin_fwrite
+print_env_info
+nodename
+_IO_codecvt
+long unsigned int
+_IO_write_end
+machine
+__off64_t
+__off_t
+_chain
+__time_t
+_IO_wide_data
+_IO_backup_base
+_flags2
+_mode
+_IO_read_base
+_vtable_offset
+_IO_save_base
+_fileno
+stdout
+_short_backupbuf
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/src/env-info.c
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/src
+/usr/include/aarch64-linux-gnu/bits
+/usr/include/aarch64-linux-gnu/bits/types
+/usr/include
+/usr/include/aarch64-linux-gnu/sys
+types.h
+struct_FILE.h
+stdio.h
+utsname.h
+time_t.h
+time.h
+<built-in>
+crt1.o
+__wrap_main
+__abi_tag
+crti.o
+call_weak_fn
+crtn.o
+abort.o
+sigall_set
+perror.o
+perror_internal
+init-first.o
+unwind-dw2-fde-dip.o
+fde_unencoded_compare
+fde_unencoded_extract
+frame_downheap
+version_lock_lock_exclusive
+read_encoded_value_with_base
+fde_radixsort
+version_lock_unlock_exclusive
+btree_allocate_node
+btree_handle_root_split.part.0
+btree_insert.isra.0
+btree_release_tree_recursively
+btree_destroy
+get_cie_encoding
+btree_remove
+fde_mixed_encoding_extract
+classify_object_over_fdes
+get_pc_range
+__deregister_frame_info_bases.part.0
+fde_single_encoding_extract
+fde_single_encoding_compare
+fde_mixed_encoding_compare
+add_fdes.isra.0
+linear_search_fdes
+release_registered_frames
+terminator.0
+version_lock_mutex
+version_lock_cond
+registered_objects
+in_shutdown
+object_mutex
+env-info.c
+stdfiles.o
+_IO_stdfiles_init
+_IO_stdfile_2_lock
+_IO_stdfile_1_lock
+_IO_stdfile_0_lock
+_IO_wide_data_2
+_IO_wide_data_1
+_IO_wide_data_0
+lse-init.o
+init_have_lse_atomics
+__aarch64_have_sme.o
+init_have_sme
+crtstuff.c
+__EH_FRAME_BEGIN__
+deregister_tm_clones
+__do_global_dtors_aux
+completed.1
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+object.0
+__frame_dummy_init_array_entry
+libc-start.o
+prefer_sve_ifuncs
+__libc_start_call_main
+cpu_list
+libc-tls.o
+static_slotinfo
+errno.o
+setjmp.o
+sigjmp.o
+sigprocmask.o
+cxa_atexit.o
+__PRETTY_FUNCTION__.0
+__PRETTY_FUNCTION__.1
+__exit_lock
+fprintf.o
+vfprintf-internal.o
+outstring_converted_wide_string
+group_number
+printf_positional
+null
+jump_table
+step4_jumps.0
+step0_jumps.7
+step1_jumps.6
+step2_jumps.5
+step3a_jumps.4
+step4_jumps.3
+step3b_jumps.2
+errname.o
+_sys_errnameidx
+_sys_errname
+fxprintf.o
+locked_vfxprintf
+printf-parsemb.o
+iofclose.o
+iofdopen.o
+iofflush.o
+iofopen.o
+iofwrite.o
+fileno.o
+libc_fatal.o
+vtables.o
+mmap_remap_check
+decide_maybe_mmap
+flush_cleanup
+save_for_backup
+_IO_un_link.part.0
+run_fp
+list_all_lock
+stdio_needs_locking
+dealloc_buffers
+freeres_list
+stdio.o
+strops.o
+enlarge_userbuf
+libc-cleanup.o
+lowlevellock.o
+nptl_deallocate_tsd.o
+nptl_nthreads.o
+pthread_keys.o
+pthread_kill.o
+__pthread_kill_implementation.constprop.0
+pthread_rwlock_rdlock.o
+pthread_rwlock_unlock.o
+pthread_rwlock_wrlock.o
+pthread_sigmask.o
+malloc.o
+_dl_tunable_set_mmap_threshold
+_dl_tunable_set_mmaps_max
+_dl_tunable_set_top_pad
+_dl_tunable_set_perturb_byte
+_dl_tunable_set_trim_threshold
+_dl_tunable_set_arena_max
+_dl_tunable_set_arena_test
+_dl_tunable_set_tcache_max
+_dl_tunable_set_tcache_count
+_dl_tunable_set_tcache_unsorted_limit
+_dl_tunable_set_mxfast
+malloc_printerr
+tcache_double_free_verify
+int_mallinfo
+alloc_perturb
+munmap_chunk
+__PRETTY_FUNCTION__.13
+detach_arena.part.0
+__PRETTY_FUNCTION__.4
+_dl_tunable_set_hugetlb
+__malloc_info.part.0
+unlink_chunk.isra.0
+malloc_consolidate
+_int_free_create_chunk
+ptmalloc_init.part.0
+alloc_new_heap
+arena_get2
+__PRETTY_FUNCTION__.6
+__PRETTY_FUNCTION__.3
+arena_get_retry
+sysmalloc_mmap_fallback.constprop.0
+sysmalloc_mmap.isra.0
+__PRETTY_FUNCTION__.9
+systrim.constprop.0
+_int_free_maybe_consolidate.part.0
+__PRETTY_FUNCTION__.11
+__PRETTY_FUNCTION__.10
+_int_free_merge_chunk
+_int_free_chunk
+sysmalloc
+__PRETTY_FUNCTION__.8
+_int_malloc
+__PRETTY_FUNCTION__.7
+tcache_init.part.0
+_int_realloc
+__PRETTY_FUNCTION__.16
+_int_memalign
+__PRETTY_FUNCTION__.18
+_mid_memalign.isra.0
+__PRETTY_FUNCTION__.17
+__PRETTY_FUNCTION__.14
+__PRETTY_FUNCTION__.15
+__PRETTY_FUNCTION__.19
+__PRETTY_FUNCTION__.20
+narenas
+may_shrink_heap.12
+global_max_fast
+__malloc_initialized
+tcache_key
+__always_fail_morecore
+mtag_enabled
+mtag_mmap_flags
+aligned_heap_area
+free_list_lock
+narenas_limit.2
+next_to_use.5
+main_arena
+tcache
+thread_arena
+tcache_shutting_down
+scratch_buffer_grow_preserve.o
+scratch_buffer_set_array_size.o
+_strerror.o
+memcmp.o
+__libc_memcpy_ifunc
+__libc_memmove_ifunc
+__libc_memset_ifunc
+strchrnul.o
+strlen.o
+__strlen_ifunc
+strnlen.o
+strstr.o
+two_way_long_needle
+memcpy_a64fx.o
+memcpy_generic.o
+memcpy_mops.o
+memcpy_oryon1.o
+memcpy_sve.o
+memmove_mops.o
+memset_a64fx.o
+memset_emag.o
+memset_generic.o
+memset_kunpeng.o
+memset_mops.o
+memset_oryon1.o
+memset_sve_zva64.o
+memset_zva64.o
+strlen_asimd.o
+strlen_generic.o
+mbsrtowcs.o
+mbsrtowcs_l.o
+wcrtomb.o
+wcsmbsload.o
+to_mb
+to_wc
+wcsrtombs.o
+localtime.o
+tzset.o
+compute_change
+__tzstring_len
+parse_tzname
+parse_offset
+parse_rule
+tzset_internal
+tzstring_list
+tz_rules
+old_tz
+is_initialized.0
+tzset_lock
+tzfile.o
+default_tzdir.0
+__PRETTY_FUNCTION__.2
+tzfile_ino
+tzfile_dev
+tzfile_mtime
+num_transitions
+num_types
+num_leaps
+type_idxs
+zone_names
+tzspec
+daylight_saved
+rule_dstoff
+rule_stdoff
+clock_gettime.o
+_exit.o
+getpid.o
+uname.o
+environ.o
+fcntl64.o
+fstat64.o
+lseek64.o
+open64.o
+read.o
+close_nocancel.o
+fcntl_nocancel.o
+open64_nocancel.o
+read_nocancel.o
+write_nocancel.o
+getpagesize.o
+getsysstats.o
+next_line
+read_sysfs_file
+get_nproc_stat
+__get_nprocs_sched
+madvise.o
+mmap64.o
+mprotect.o
+munmap.o
+sbrk.o
+mremap.o
+prctl.o
+setvmaname.o
+prctl_supported.0
+sysinfo.o
+gettid.o
+__mtag_tag_zero_region.o
+__mtag_tag_region.o
+__arm_za_disable.o
+malloc-hugepages.o
+mode_always.2
+mode_madvise.1
+mode_never.0
+asprintf_chk.o
+fortify_fail.o
+fprintf_chk.o
+memcpy_chk.o
+memset_chk.o
+readonly-area.o
+stack_chk_fail.o
+dl-debug.o
+dl-debug-symbols.o
+dl-debug_state.o
+dl-load.o
+is_dst
+is_trusted_path_normalize
+open_verify.constprop.0
+add_path.constprop.0.isra.0
+open_path.isra.0
+add_name_to_object.isra.0
+__PRETTY_FUNCTION__.5
+expand_dynamic_string_token
+fillin_rpath.isra.0
+decompose_rpath
+cache_rpath
+_dl_map_object_from_fd.constprop.0
+dummy_bucket.6
+system_dirs
+system_dirs_len
+expected.4
+max_dirnamelen
+dl-misc.o
+primes.0
+dl-object.o
+dl-origin.o
+dl-printf.o
+_dl_debug_vdprintf
+dl-setup_hash.o
+dl-tls.o
+_dl_allocate_tls_init.part.0
+dl-tls_init_tp.o
+dl-tunables.o
+do_tunable_update_val
+tunable_initialize
+tunable_list
+tunable_env_alias_list
+dl-cache.o
+search_cache
+cachesize
+cache_new
+dl-rseq-symbols.o
+dl-bti.o
+bti_failed.isra.0
+dl-gcs.o
+check_gcs_depends
+dl-early_allocate.o
+dl-support.o
+unsecure_envvars.3
+__compound_literal.2
+__compound_literal.0
+__compound_literal.1
+__compound_literal.3
+rfv.0
+enbl-secure.o
+libc_early_init.o
+check_fds.o
+check_one_fd
+sysdep.o
+gconv_db.o
+free_derivation
+free_modules_db
+derivation_compare
+find_derivation
+known_derivations
+gconv_conf.o
+__gconv_get_path
+insert_module
+add_module
+add_alias2.part.0
+read_conf_file.isra.0
+__gconv_read_conf
+empty_path_elem
+builtin_aliases
+modcounter.0
+builtin_modules
+gconv_builtin.o
+gconv_simple.o
+__PRETTY_FUNCTION__.12
+inmask.9
+gconv_trans.o
+gconv_cache.o
+find_module_idx
+find_module.constprop.0
+gconv_cache
+cache_malloced
+gconv_dl.o
+known_compare
+do_release_shlib
+do_release_all
+setlocale.o
+new_composite_name
+free_category
+_nl_current_used
+_nl_category_postload
+lc-ctype.o
+lc-numeric.o
+C_name.o
+SYS_libc.o
+global-locale.o
+xlocale.o
+__libc_assert_fail.o
+ctype-info.o
+dcgettext.o
+dcigettext.o
+plural_eval
+transcmp
+output_charset_cached.1
+output_charset_cache.0
+lock.4
+freemem.3
+freemem_size.2
+transmem_list
+tree_lock
+root
+finddomain.o
+lock.0
+_nl_loaded_domains
+loadmsgcat.o
+localealias.o
+read_alias_file
+maxmap
+string_space_act
+string_space_max
+string_space
+locale_alias_path.1
+l10nflist.o
+explodename.o
+plural.o
+yypgoto
+yypact
+yytranslate
+yydefact
+yycheck
+yytable
+yyr2
+yyr1
+yydefgoto
+plural-exp.o
+plone
+plvar
+hash-string.o
+raise.o
+libc_sigaction.o
+getenv.o
+getrandom.o
+getrandom_vdso
+state_size
+grnd_alloc
+state_size_cache_aligned
+mmap_prot
+qsort.o
+do_swap
+msort_with_tmp.part.0
+indirect_msort_with_tmp
+setenv.o
+envlock
+known_values
+strtol.o
+strtol_l.o
+strtoul.o
+strtoul_l.o
+grouping.o
+_itoa.o
+funlockfile.o
+grouping_iterator.o
+isoc23_sscanf.o
+itoa-digits.o
+itoa-udigits.o
+printf_buffer_puts_1.o
+printf_fp.o
+hack_digit
+__printf_fp_buffer_1.isra.0
+printf_fphex.o
+__printf_fphex_buffer
+reg-modifier.o
+next_bit
+reg-printf.o
+reg-type.o
+pa_next_type
+translated_number_width.o
+vfscanf-internal.o
+char_buffer_add_slow
+vfwprintf-internal.o
+wprintf_buffer_done.o
+wprintf_buffer_pad_1.o
+wprintf_buffer_putc_1.o
+wprintf_buffer_to_file.o
+wprintf_buffer_write.o
+wprintf_function_invoke.o
+errlist.o
+errlist-data.o
+printf-parsewc.o
+filedoalloc.o
+iofputs.o
+iogetdelim.o
+wgenops.o
+save_for_wbackup
+wfileops.o
+adjust_wide_data
+iofwide.o
+fseek.o
+vasprintf.o
+vsnprintf.o
+ftello.o
+iofread_u.o
+iofgets_u.o
+alloca_cutoff.o
+cancellation.o
+futex-internal.o
+pthread_mutex_conf.o
+_dl_tunable_set_mutex_spin_count
+_dl_tunable_set_stack_cache_size
+_dl_tunable_set_stack_hugetlb
+pthread_mutex_lock.o
+__pthread_mutex_lock_full
+pthread_mutex_unlock.o
+__pthread_mutex_unlock_full
+pthread_once.o
+__pthread_cleanup_combined_routine_voidptr
+clear_once_control
+__pthread_once_slow.isra.0
+pthread_rwlock_init.o
+default_rwlockattr
+pthread_self.o
+syscall_cancel.o
+tpp.o
+vars.o
+alloc_buffer_alloc_array.o
+alloc_buffer_create_failure.o
+argz-addsep.o
+argz-ctsep.o
+__memchr_ifunc
+stpcpy.o
+strcasecmp_l.o
+strchr.o
+strcmp.o
+strcpy.o
+strcspn.o
+strdup.o
+strncmp.o
+strrchr.o
+strsep.o
+strtok_r.o
+memchr_generic.o
+memchr_nosimd.o
+btowc.o
+mbrlen.o
+mbrtowc.o
+wcschrnul.o
+wcslen.o
+wcsnlen.o
+wmemchr.o
+wmemcpy.o
+wmemmove.o
+wmempcpy.o
+wmemset.o
+offtime.o
+asctime.o
+asctime_internal
+mktime.o
+ydhms_diff
+ranged_convert
+localtime_offset.0
+closedir.o
+getdents64.o
+opendir_tail
+readdir64.o
+sched_cpucount.o
+sched_getp.o
+sched_gets.o
+sched_primax.o
+sched_primin.o
+sched_sets.o
+sysconf.o
+fstatat64.o
+getcwd.o
+isatty.o
+lstat64.o
+openat64.o
+openat64_nocancel.o
+pread64_nocancel.o
+tcgetattr.o
+getrlimit64.o
+getclktck.o
+getdtsz.o
+tsearch.o
+trecurse
+trecurse_r
+tdestroy_recurse
+maybe_split_for_insert.isra.0
+init-misc.o
+towctrans.o
+memmove_chk.o
+mempcpy_chk.o
+dl-catch.o
+fatal_error
+dl-exception.o
+length_mismatch
+_dl_out_of_memory
+dl-execstack.o
+dl-execstack-tunable.o
+dl-lookup.o
+check_match
+do_lookup_x
+dl-reloc.o
+errstring.1
+msg.0
+dl-scope.o
+dl-thread_gscope_wait.o
+dl-trampoline.o
+dl-tlsdesc.o
+dl-libc.o
+do_dlopen
+do_dlsym_private
+do_dlsym
+do_dlvsym
+do_dlclose
+free_slotinfo
+gconv_open.o
+gconv.o
+gconv_close.o
+gconv_charset.o
+gconv_parse_code
+findlocale.o
+slashdot.0
+codeset_idx.2
+loadarchive.o
+archfname
+archloaded
+archmapped
+headmap
+archive_stat
+loadlocale.o
+_nl_value_type_LC_MEASUREMENT
+_nl_value_type_LC_TELEPHONE
+_nl_value_type_LC_MESSAGES
+_nl_category_num_items
+_nl_value_type_LC_CTYPE
+_nl_value_type_LC_MONETARY
+_nl_value_type_LC_PAPER
+_nl_value_type_LC_NAME
+_nl_value_type_LC_ADDRESS
+_nl_value_type_LC_IDENTIFICATION
+_nl_value_type_LC_COLLATE
+_nl_value_type_LC_NUMERIC
+_nl_value_type_LC_TIME
+C-address.o
+C-collate.o
+collseqwc
+collseqmb
+C-ctype.o
+translit_to_tbl
+translit_to_idx
+translit_from_tbl
+translit_from_idx
+lc_ctype_data
+C-identification.o
+C-measurement.o
+C-messages.o
+C-monetary.o
+conversion_rate
+not_available
+C-name.o
+C-numeric.o
+C-paper.o
+C-telephone.o
+C-time.o
+localename.o
+__longjmp.o
+strtod.o
+strtod_l.o
+round_and_return
+str_to_mpn.part.0.constprop.0
+nbits.1
+strtod_nan.o
+strtof.o
+strtof_l.o
+strtof_nan.o
+strtold.o
+strtold_l.o
+strtold_nan.o
+add_n.o
+divrem.o
+lshift.o
+mul.o
+mul_n.o
+rshift.o
+sub_n.o
+submul_1.o
+ldbl2mpn.o
+mpn2dbl.o
+mpn2flt.o
+mpn2ldbl.o
+tens_in_limb.o
+fpioconst.o
+itowa-digits.o
+__printf_buffer_as_file_commit
+wprintf_buffer_as_file.o
+__wprintf_buffer_as_file_commit
+wprintf_buffer_flush.o
+iogetline.o
+ioseekoff.o
+cleanup_compat.o
+nptl-stack.o
+memmem.o
+strncase_l.o
+strndup.o
+strspn.o
+lc-time-cleanup.o
+fdopendir.o
+rewinddir.o
+get_child_max.o
+dl-close.o
+remove_slotinfo
+dl_close_state.2
+dl-find_object.o
+_dl_find_object_from_map
+_dlfo_sort_mappings.part.0
+_dlfo_process_initial
+_dlfo_loaded_mappings
+_dlfo_loaded_mappings_version
+_dlfo_nodelete_mappings
+_dlfo_nodelete_mappings_size
+_dlfo_main
+_dlfo_nodelete_mappings_end
+dl-open.o
+call_dl_init
+add_to_global_update
+dl_open_worker
+dl_open_worker_begin
+add_to_global_resize_failure.isra.0
+add_to_global_resize
+dl-runtime.o
+dl-sort-maps.o
+dfs_traversal.part.0
+dl-version.o
+dl-addr-obj.o
+rtld_static_init.o
+_dlfcn_hook
+addmul_1.o
+dladdr.o
+dladdr1.o
+dlclose.o
+dlerror.o
+dlinfo.o
+dlinfo_doit
+dlmopen.o
+dlmopen_doit
+dlopen.o
+dlopen_doit
+dlsym.o
+dlsym_doit
+dlvsym.o
+dlvsym_doit
+libc_dlerror_result.o
+dl-call-libc-early-init.o
+dl-call_fini.o
+dl-deps.o
+openaux
+dl-init.o
+call_init
+dl-lookup-direct.o
+dl-addr.o
+dl-sym.o
+call_dl_lookup
+do_sym
+cas_4_1.o
+cas_4_2.o
+cas_8_2.o
+cas_4_3.o
+cas_8_3.o
+swp_4_1.o
+ldadd_4_1.o
+ldset_4_1.o
+ldadd_8_1.o
+swp_4_2.o
+ldadd_4_2.o
+ldclr_4_2.o
+ldset_4_2.o
+swp_8_2.o
+swp_4_3.o
+addtf3.o
+letf2.o
+multf3.o
+unordtf2.o
+sfp-exceptions.o
+unwind-dw2.o
+init_dwarf_reg_size_table
+uw_install_context_1
+read_encoded_value
+execute_stack_op
+uw_update_context_1
+uw_update_context
+execute_cfa_program_specialized
+execute_cfa_program_generic
+uw_frame_state_for
+uw_init_context_1
+_Unwind_RaiseException_Phase2
+_Unwind_ForcedUnwind_Phase2
+_Unwind_DebugHook
+once_regsizes.0
+unwind-c.o
+base_of_encoded_value
+__arm_tpidr2_save.o
+pthread_cond_broadcast.o
+pthread_cond_wait.o
+__condvar_confirm_wakeup
+__condvar_release_lock
+__condvar_cancel_waiting
+__condvar_cleanup_waiting
+pthread_mutex_cond_lock.o
+__pthread_mutex_cond_lock_full
+getauxval.o
+pthread_cond_signal.o
+cas_8_4.o
+ldadd_8_2.o
+ldadd_4_3.o
+ldclr_4_3.o
+ldeor_8_3.o
+swp_8_4.o
+__FRAME_END__
+__ehdr_start
+_TLS_MODULE_BASE_
+__rela_iplt_end
+__fini_array_end
+__rela_iplt_start
+__fini_array_start
+__init_array_end
+__preinit_array_end
+_GLOBAL_OFFSET_TABLE_
+__init_array_start
+__preinit_array_start
+_nl_C_LC_CTYPE
+__dup
+__stack_chk_fail_local
+__dl_libc_freemem
+__sfp_handle_exceptions
+_nl_C_LC_CTYPE_class_print
+__libgcc_arm_za_disable
+__getdtablesize
+_IO_remove_marker
+__libc_sigaction
+strcpy
+asctime
+_IO_wdefault_xsgetn
+__thread_gscope_wait
+_dl_vsym
+_dl_setup_hash
+_IO_link_in
+__daylight
+_Unwind_Find_FDE
+_dl_debug_printf
+gsignal
+_IO_sputbackc
+_nl_C_LC_CTYPE_class_upper
+_IO_default_finish
+_dl_check_map_versions
+_Unwind_GetIPInfo
+__gconv_transform_utf8_internal
+__aarch64_ldadd4_rel
+__memset_zva64
+__libc_argc
+__longjmp
+_IO_file_finish
+_nl_C_LC_CTYPE_width
+__fxprintf_nocancel
+__printf_buffer_flush_fp
+_nl_unload_domain
+_rseq_align
+__dlinfo
+__isoc23_sscanf
+_Unwind_GetIP
+__mpn_impn_mul_n_basecase
+_IO_wdoallocbuf
+__getpid
+__register_printf_modifier
+_IO_list_lock
+__strtod_internal
+stdout
+__printf_buffer_write
+_IO_seekoff_unlocked
+_nl_load_domain
+___pthread_rwlock_wrlock
+_dl_gcs_enable_failed
+_IO_default_doallocate
+__addtf3
+__libc_dlerror_result
+__strtoull_l
+__libc_cleanup_push_defer
+_IO_new_file_xsputn
+_dl_reloc_bad_type
+__printf_buffer_flush_snprintf
+_IO_least_wmarker
+_IO_default_sync
+__register_frame
+_dl_debug_change_state
+_IO_file_sync
+__tzset
+__strtoull_internal
+__wprintf_buffer_to_file_init
+__nptl_stack_list_del
+__mpn_impn_sqr_n_basecase
+_dl_gcs_check
+___dlvsym
+_IO_seekwmark
+_IO_fflush
+__mpn_extract_long_double
+_IO_wfile_jumps
+_sys_errlist_internal_len
+_nl_C_LC_CTYPE_class_xdigit
+_IO_file_write
+_dl_find_dso_for_object
+__init_misc
+__gconv_transform_ascii_internal
+__mpn_sub_n
+__wcsmbs_clone_conv
+__glibc_morecore
+__mpn_cmp
+__mbrlen
+__libio_codecvt_length
+__sched_get_priority_max
+__mpn_addmul_1
+__strnlen
+__tls_init_tp
+__gconv
+__gconv_transform_ucs2_internal
+__printf_modifier_table
+__tcgetattr
+strtof32
+_dl_new_object
+__vfwprintf_internal
+_Unwind_Resume_or_Rethrow
+__fcntl64_nocancel
+__calloc
+_dl_make_stack_executable
+_IO_default_xsgetn
+__libc_message_impl
+__strtok_r
+__pthread_mutex_cond_lock_adjust
+_dl_exception_create
+__aarch64_ldadd4_relax
+__sched_getparam
+__libc_stack_end
+_IO_enable_locks
+fileno_unlocked
+_nl_default_locale_path
+__stack_chk_guard
+__register_printf_specifier
+_dl_debug_fd
+_nl_C_LC_NAME
+__tsearch
+____strtol_l_internal
+_IO_file_seekoff_mmap
+__libc_fcntl
+__gettext_free_exp
+__printf_buffer_as_file_overflow
+_dl_load_cache_lookup
+__libc_reg_printf_freemem_ptr
+_nl_current_LC_NUMERIC_used
+__write
+_IO_fopen64
+__libio_codecvt_out
+__gettext_extract_plural
+_IO_sgetn
+__mmap
+__ftello
+_dl_stack_user
+__mprotect
+_nl_domain_bindings
+_dl_catch_exception
+__libc_single_threaded
+__gconv_path_envvar
+__malloc_arena_thread_freeres
+__aarch64_swp4_acq
+_Unwind_GetRegionStart
+__add_to_environ
+_dl_initial_searchlist
+getenv
+_IO_file_seek
+__parse_one_specwc
+__vfscanf_internal
+_itoa_word
+strtold
+__tz_compute
+__new_fdopen
+__tdestroy
+__getcwd
+__libgcc_arm_tpidr2_save
+__memmove_mops
+_Unwind_Backtrace
+__mbsrtowcs_l
+_IO_init_marker
+__strtol_internal
+__isoc23_strtoll_l
+_nl_category_name_idxs
+__syscall_cancel_arch
+__pthread_current_priority
+__tzname
+__woverflow
+_IO_2_1_stdout_
+__register_printf_function
+__memcmpeq
+__mpn_mul_n
+_IO_new_file_init
+__strtold_l
+__gconv_lookup_cache
+__openat64
+_dl_higher_prime_number
+_nl_C_LC_CTYPE_class_cntrl
+qsort
+__posix_memalign
+_IO_flush_all_linebuffered
+__lll_lock_wait
+__prctl_time64
+strtof32_l
+_IO_fclose
+__abort_lock_rdlock
+__strtoll_internal
+_nl_expand_alias
+__gconv_modules_db
+_dl_stack_cache_lock
+_IO_wfile_underflow_maybe_mmap
+_IO_wdo_write
+__getdelim
+__read
+__pthread_kill_internal
+_dl_load_tls_lock
+__pthread_cleanup_pop
+__wcschrnul
+_dl_strtoul
+_IO_default_underflow
+_IO_funlockfile
+__gconv_load_cache
+__mallinfo
+__gconv_transform_ucs4le_internal
+_dl_platformlen
+_dl_tls_static_used
+_IO_switch_to_wget_mode
+__localtime_r
+_Unwind_GetCFA
+__exit_funcs
+__gettextparse
+_IO_default_xsputn
+__mpn_lshift
+__TMC_END__
+_nl_load_locale
+___printf_fp
+__getrandom_fork_subprocess
+_IO_fwrite
+_IO_default_setbuf
+_IO_sungetc
+__pthread_mutex_cond_lock
+_dl_try_allocate_static_tls
+perror
+__get_errlist
+__gconv_get_cache
+__futex_abstimed_wait64
+__getrandom_early_init
+_dl_addr_inside_object
+_IO_new_fdopen
+_IO_fwide
+__gconv_find_shlib
+__pthread_tunables_init
+_nl_unload_locale
+_IO_new_file_close_it
+_dl_debug_mask
+_IO_wfile_overflow
+__libc_memalign
+__libc_scratch_buffer_set_array_size
+__libc_dlsym_private
+__overflow
+__btowc
+__mpn_mul
+_IO_wfile_underflow_mmap
+__vsnprintf_internal
+__strtol_ul_max_tab
+_dl_non_dynamic_init
+__internal_atexit
+__memalign
+__wprintf_buffer_as_file_xsputn
+__mpn_submul_1
+_IO_file_close
+__malloc_trim
+__pthread_sigmask
+__libc_reg_type_freemem_ptr
+__dladdr
+_nl_current_default_domain
+_nl_msg_cat_cntr
+__letf2
+__open
+__strtod_nan
+_IO_unsave_markers
+__stat
+_nl_C_LC_CTYPE_class
+__isoc23_strtol
+____strtof_l_internal
+_dl_load_adds
+__gettext_germanic_plural
+_dlfo_sort_mappings
+__wcsmbs_getfct
+_IO_2_1_stdin_
+__gconv_transform_internal_ucs4
+__environ_array_list
+__get_child_max
+_dl_protect_relro
+_dl_fatal_printf
+__strerror_r
+_dl_stack_cache
+__wcsmbs_load_conv
+__mpn_impn_sqr_n
+__printf_buffer_putc_1
+strtof128
+_nl_C_LC_ADDRESS
+_dl_deallocate_tls
+_nl_C_LC_CTYPE_class_graph
+__mpn_impn_mul_n
+__current_locale_name
+__libc_tzset_freemem
+__bss_start__
+__aarch64_cas4_relax
+___dlopen
+_nl_C_LC_CTYPE_tolower
+__dso_handle
+__mpn_construct_float
+_dl_tls_threads_in_update
+__strsep
+__new_exitfn
+_dl_printf
+__libc_alloca_cutoff
+__isoc23_strtoul
+__nptl_deallocate_tsd
+__malloc_thp_mode
+_IO_switch_to_main_wget_area
+__gconv_dl_freemem
+__abort_lock_wrlock
+__dcgettext
+_nl_current_LC_CTYPE_used
+___pthread_rwlock_rdlock
+_IO_str_init_readonly
+_IO_file_seekoff
+__libc_assert_fail
+__libio_freemem
+_nl_cleanup_time
+__printf_buffer_flush_asprintf
+_dl_signal_exception
+__memmove_sve
+_dl_count_modids
+__exit_funcs_lock
+__frame_state_for
+__offtime
+__tunable_get_val
+___pthread_cond_timedwait64
+__nptl_stack_cache_maxsize
+_IO_adjust_wcolumn
+__tunables_init
+__strtoul_internal
+_dl_audit_pltexit
+_IO_str_seekoff
+__ctype_init
+__libio_codecvt_in
+___brk_addr
+__memcpy_sve
+_dl_tls_static_optional
+__lseek64
+_IO_file_setbuf
+_IO_new_file_fopen
+__libc_mallinfo
+__ftello64
+_IO_new_fopen
+___pthread_cond_clockwait
+__wprintf_buffer_done
+__printf_buffer_to_file_init
+__isoc23_strtoull
+__printf_buffer_done
+__fread_unlocked
+__gconv_btwoc_ascii
+_IO_fdopen
+__getrandom_reset_state
+__wcslen
+_IO_default_write
+__libc_read
+__fxprintf
+__GI___rseq_size
+__aarch64_swp4_rel
+__gconv_find_transform
+__rtld_static_init
+_IO_file_close_mmap
+_dl_allocate_tls_storage
+__libc_realloc
+__libc_tsd_CTYPE_TOLOWER
+__gconv_transform_ucs2reverse_internal
+_dl_tls_static_align
+_dl_scope_free
+__environ
+__translated_number_width
+_Exit
+___dlsym
+_nl_intern_locale_data
+__nptl_deallocate_stack
+_dl_lookup_symbol_x
+__printf_buffer_flush_fphex_to_wide
+_nl_cleanup_ctype
+_dl_tls_max_dtv_idx
+__printf_buffer_to_file_done
+_nl_C_LC_CTYPE_map_toupper
+_nl_C_LC_CTYPE_class_punct
+abort
+__libc_setlocale_lock
+__tunable_is_initialized
+_dl_relocate_static_pie
+__sigjmp_save
+__sched_fifo_min_prio
+__stack_chk_fail
+__lstat64
+_dl_close
+__aarch64_cas8_acq
+_dl_static_dtv
+_dl_bind_not
+__libc_enable_secure
+__memmove_oryon1
+_nl_postload_ctype
+__unordtf2
+__pthread_raise_internal
+__GI___fcntl
+_IO_fputs
+_dl_hwcap3
+__gconv_transform_ucs4_internal
+__open_nocancel
+_dl_auxv
+__libc_dlvsym
+_nl_C_LC_CTYPE_class_digit
+_IO_str_pbackfail
+_IO_wfile_xsputn
+__gconv_max_path_elem_len
+_IO_default_imbue
+__mpn_divrem
+strtoq
+_dl_vdso_clock_gettime64
+__sigsetjmp
+__libc_lseek64
+__tls_get_addr
+__isoc23_strtoul_l
+__fcntl64_nocancel_adjusted
+__internal_syscall_cancel
+_nl_find_domain
+_dl_lookup_direct
+__stat64
+_IO_default_read
+__lll_lock_wake
+__register_frame_table
+__get_errname
+_IO_file_close_it
+__libc_start_main_impl
+__default_pthread_attr
+_dl_platform
+__aarch64_have_lse_atomics
+__aarch64_cas4_rel
+__nptl_free_stacks
+_IO_iter_begin
+____strtod_l_internal
+_nl_C_LC_CTYPE_class32
+__wprintf_fphex_l_buffer
+_dl_get_tls_static_info
+__gconv_destroy_spec
+strrchr
+__arm_za_disable
+__strtol
+__ctype_tolower_loc
+__libc_check_standard_fds
+__mpn_construct_double
+_dl_exception_free
+_IO_file_stat
+_dl_start
+__strtold_internal
+__tzfile_default
+__register_frame_info_bases
+_IO_wfile_sync
+__libc_pvalloc
+__strtoll_l
+__lll_lock_wake_private
+_dl_runtime_resolve
+__tls_pre_init_tp
+strtod
+__aarch64_cas8_acq_rel
+__sched_getscheduler
+rindex
+__readonly_area
+__printf_buffer_pad_1
+__tunable_set_val
+_dl_error_printf
+__libc_mtag_tag_zero_region
+__libc_arm_za_disable
+__libc_valloc
+__strtod_l
+_nl_C_LC_CTYPE_map_tolower
+__libc_tzfile_freemem_ptr
+_nl_locale_subfreeres
+__dcigettext
+__tzset_parse_tz
+_dl_add_to_namespace_list
+__memset_kunpeng
+__mpn_construct_long_double
+_IO_str_finish
+_nl_normalize_codeset
+__exit_funcs_done
+__aarch64_swp8_acq
+_dl_tls_static_size
+__memcpy_generic
+_dl_debug_printf_c
+_IO_default_showmanyc
+__get_nprocs
+__isatty
+_dl_tls_initial_modid_limit
+_nl_state_lock
+_dl_lazy
+_dl_debug_state
+__gconv_transform_internal_ascii
+__stpcpy
+__mmap64
+_IO_str_overflow
+__deregister_frame_info
+__libc_alloc_buffer_create_failure
+__grouping_iterator_next
+__malloc
+__openat64_nocancel
+_dl_init_paths
+__syscall_do_cancel
+__malloc_fork_lock_parent
+_dl_bti_check
+_IO_file_xsgetn
+__hash_string
+_IO_cleanup
+__memset_emag
+_dl_argv
+_IO_default_seekpos
+__gconv_open
+__free
+_Unwind_Resume
+__dlclose
+_Unwind_DeleteException
+__gconv_transform_internal_ucs2
+fseek
+__syscall_cancel_arch_end
+_IO_new_do_write
+_nl_current_LC_CTYPE
+__readdir64
+_IO_file_underflow
+____strtold_l_internal
+__gconv_release_shlib
+_nl_C_LC_MONETARY
+__read_nocancel
+_nl_make_l10nflist
+__fopen_internal
+_IO_no_init
+__strchrnul
+_dl_find_object_freeres
+__mallinfo2
+_tens_in_limb
+_dl_aarch64_cpu_features
+_IO_file_overflow
+_dl_process_pt_gnu_property
+_IO_getline_info
+__aarch64_ldeor8_rel
+__bss_end__
+__chk_fail
+strtof64x
+__nptl_stack_hugetlb
+__readdir
+__parse_one_specmb
+__wprintf_fp_l_buffer
+stdin
+__aarch64_cas4_acq
+__sched_fifo_max_prio
+__libc_open64
+_IO_str_init_static
+_dl_dst_substitute
+_fpioconst_pow10
+__wprintf_buffer_flush
+_dl_tls_dtv_slotinfo_list
+__isoc23_strtoumax
+_dl_allocate_tls_init
+__gconv_close
+__wcrtomb
+mktime
+__progname
+__printf_buffer_snprintf_init
+_dl_sysinfo_map
+__deregister_frame_info_bases
+_IO_flush_all
+strstr
+_IO_new_fclose
+_IO_iter_file
+_IO_adjust_column
+__gettid
+__libc_errno
+__correctly_grouped_prefixmb
+__lttf2
+__libc_init_first
+_IO_vtable_check
+_dl_inhibit_cache
+__vasprintf
+strtof128_l
+strtof64x_l
+__mpn_extract_double
+__environ_counter
+__GI___getrlimit
+strncmp
+_nl_C_LC_COLLATE
+_IO_fprintf
+__libio_codecvt_encoding
+__aarch64_swp4_relax
+__memset_mops
+_dl_find_object_dlclose
+_nl_explode_name
+_IO_wdefault_doallocate
+__run_exit_handlers
+__libc_malloc
+__malloc_fork_unlock_child
+_IO_marker_delta
+__libc_free
+_IO_file_underflow_mmap
+__GI___rseq_offset
+_IO_sungetwc
+program_invocation_short_name
+__aarch64_cas8_rel
+__isoc23_strtoimax
+__opendir
+_dl_find_object_init
+_IO_str_count
+__printf_arginfo_table
+___vsnprintf
+_dl_open
+_IO_file_underflow_maybe_mmap
+___fprintf_chk
+__fileno
+__pvalloc
+__vfxprintf
+__getauxval
+_nl_C_LC_CTYPE_class_space
+__printf_buffer_snprintf_done
+___asprintf_chk
+_dl_check_all_versions
+__tz_convert
+_dl_debug_initialize
+__argz_create_sep
+__strdup
+_dl_bti_protect
+_dl_tls_dtv_gaps
+__gconv_alias_compare
+_IO_file_xsgetn_mmap
+__cxa_atexit
+__grouping_iterator_init_none
+__wmemmove
+_IO_file_xsputn
+__brk
+_nl_C
+_IO_wmarker_delta
+_dl_hwcap2
+__GI_getrlimit
+__libc_mallopt
+__wcrtomb_internal
+__pthread_cleanup_push
+_IO_default_stat
+_IO_new_file_sync
+memcmp
+__sched_setscheduler
+__wprintf_buffer_to_file_done
+__mpn_add_n
+_dl_stack_cache_actsize
+_nl_current_LC_NUMERIC
+____strtoul_l_internal
+_nl_C_LC_CTYPE_toupper
+_Unwind_RaiseException
+__strcasecmp_l
+_itowa_lower_digits
+_IO_marker_difference
+_dl_get_origin
+_dl_relocate_object_no_relro
+__printf_buffer_to_file_switch
+__gconv_db_freemem
+_dl_phdr
+_dl_handle_execstack_tunable
+_IO_free_wbackup_area
+_dl_name_match_p
+_nl_remove_locale
+__getpagesize
+__mbrtowc
+__syscall_error
+_IO_free_backup_area
+_nl_C_LC_TIME
+__isoc23_strtoll
+_IO_file_init
+__printf_fphex_l_buffer
+_itoa_lower_digits
+__libc_close
+_nl_C_locobj
+__underflow
+__getrlimit64
+__gconv_get_builtin_trans
+_dl_nns
+_Unwind_SetIP
+__rewinddir
+_dl_random
+__abort_msg
+_dl_unmap
+_dl_scope_free_list
+__memcpy_a64fx
+__get_nprocs_conf
+__gconv_release_step
+__gconv_conf_freemem
+__tunables_print
+__printf_buffer_flush
+__wmemchr
+__aarch64_ldset4_acq
+__bss_start
+__twalk_r
+__aarch64_ldclr4_rel
+__libc_open
+__gconv_cache_freemem
+_IO_wdefault_xsputn
+__gconv_transform_internal_utf8
+localtime
+_IO_default_uflow
+_dl_in_flight_stack
+_IO_file_seekoff_maybe_mmap
+__wmempcpy
+__strtol_l
+_dl_call_fini
+_dl_origin_path
+__wcsnlen
+_dl_determine_tlsoffset
+__malloc_info
+__wcsmbs_gconv_fcts_c
+__pread64_nocancel
+_IO_new_file_finish
+__memmove_chk
+_dl_call_libc_early_init
+_dl_tls_generation
+__gconv_lock
+__sched_cpucount
+_IO_new_file_attach
+__nptl_nthreads
+__fortify_fail
+_dl_clktck
+_dl_cache_libcmp
+__mon_yday
+__rtld_search_dirs
+_dl_relocate_object
+_dl_dynamic_weak
+__wunderflow
+__memcpy_chk
+__uflow
+__register_frame_info_table_bases
+_dl_dst_count
+_nl_C_name
+_nl_find_msg
+___pthread_cond_clockwait64
+_IO_switch_to_wbackup_area
+_IO_list_resetlock
+__end__
+__fgets_unlocked
+__time
+__memcpy_mops
+__libc_early_init
+_tmbuf
+_dl_hwcap4
+__memmem
+__lseek
+_nl_default_dirname
+_nl_POSIX_name
+__twalk
+_IO_getline
+_dl_early_allocate
+_dl_allocate_static_tls
+__libc_mallinfo2
+__strlen
+strcmp
+_IO_wdefault_uflow
+__mpn_rshift
+_nl_C_LC_MEASUREMENT
+__gconv_get_alias_db
+__memset_a64fx
+__abort_fork_reset_child
+__libc_scratch_buffer_grow_preserve
+_nl_find_locale
+__memchr
+__getrandom_nocancel
+__mbsrtowcs
+__printf_function_table
+__fopen_maybe_mmap
+_dl_rtld_di_serinfo
+__multf3
+__libc_openat64
+_dl_sysinfo_dso
+__wmemset
+_nl_C_LC_TELEPHONE
+_nl_C_LC_CTYPE_class_alnum
+__deregister_frame
+_IO_setb
+__register_printf_type
+_IO_file_fopen
+_dl_sort_maps
+__write_nocancel
+__dladdr1
+__qsort_r
+__libc_memcpy
+___pthread_rwlock_unlock
+_dl_unload_cache
+strtof32x_l
+____strtoll_l_internal
+_IO_new_file_setbuf
+_IO_wfile_seekoff
+__wprintf_buffer_flush_to_file
+strtof
+_dl_minsigstacksize
+_IO_wfile_underflow
+__madvise
+_IO_file_doallocate
+__wcsrtombs
+strcspn
+__gconv_compare_alias_cache
+_libc_intl_domainname
+__getrandom_vdso_release
+__gconv_path_elem
+__tens
+__abort_lock_unlock
+__isoc23_strtol_l
+__strlen_asimd
+_IO_init_wmarker
+setlocale
+_dl_tls_initial_modid_limit_setup
+_dl_tls_static_surplus
+__libc_tsd_CTYPE_B
+__getclktck
+_Unwind_GetTextRelBase
+_IO_file_read
+stderr
+_IO_file_xsgetn_maybe_mmap
+__malloc_default_thp_pagesize
+__wprintf_buffer_putc_1
+__pthread_get_minstack
+_nl_C_LC_CTYPE_class_blank
+__isoc23_strtoull_l
+__fcntl64
+__fstat64
+__libc_setup_tls
+__strtold_nan
+_IO_file_jumps
+__memset_oryon1
+__aarch64_ldadd4_acq
+___asprintf
+__strtof_l
+__printf_fp_l_buffer
+__asctime_r
+__wprintf_buffer_write
+__close_nocancel
+_dl_init_static_tls
+timelocal
+__new_exitfn_called
+_Unwind_FindEnclosingFunction
+__strsep_g
+_nl_finddomain_subfreeres
+_IO_str_init_static_internal
+__wctrans
+_dl_stack_flags
+_nl_category_name_sizes
+___pthread_cond_signal
+__libc_lseek
+__handle_registered_modifier_mb
+_IO_fopen
+_IO_wdefault_finish
+_IO_new_file_write
+__memset_sve_zva64
+__ctype_b_loc
+___pthread_mutex_lock
+__mremap
+___pthread_cond_wait
+_Unwind_GetLanguageSpecificData
+__strndup
+__libc_fcntl64
+__rseq_flags
+__aarch64_ldadd8_acq
+_dl_init_all_dirs
+_dl_allocate_tls
+__aarch64_ldset4_relax
+_dl_tls_static_nelem
+_dl_aarch64_gcs
+__fork_generation
+__gconv_get_modules_db
+__tzfile_compute
+__uname
+_IO_sputbackwc
+___pthread_cond_timedwait
+__opendirat
+__aarch64_swp8_acq_rel
+__libc_dlclose
+__gconv_load_conf
+__gconv_close_transform
+_dl_debug_update
+__wprintf_buffer_as_file_overflow
+__malloc_hugepage_config
+_dl_tls_get_addr_soft
+_IO_file_attach
+print_env_info
+__timezone
+_nl_C_LC_NUMERIC
+_IO_unsave_wmarkers
+__fstatat64
+_IO_file_open
+__set_vma_name
+__wprintf_buffer_as_file_init
+__rtld_env_path_list
+_dl_map_object
+__pthread_keys
+_nl_archive_subfreeres
+__libc_tsd_LOCALE
+_IO_list_unlock
+__close
+__libc_localealias_freemem
+__mpn_mul_1
+_itoa_upper_digits
+_Unwind_ForcedUnwind
+_edata
+__snprintf
+_dl_load_lock
+__sched_get_priority_min
+__intl_freemem
+_IO_switch_to_get_mode
+_dl_stack_used
+_dl_fixup
+_IO_do_write
+_fitoa_word
+__fdopendir
+__printf_buffer_flush_fp_to_wide
+__clock_gettime
+strtof64_l
+__strtof_internal
+__tunable_get_default
+_r_debug_extended
+strtof64
+_nl_locale_file_list
+__gconv_release_cache
+__nptl_initial_report_events
+strtouq
+__tzfile_read
+__new_fclose
+__libc_dlerror_result_free
+_dl_fpu_control
+__wuflow
+__wprintf_function_invoke
+__sysconf
+__aarch64_ldclr4_acq
+__io_vtables
+__libc_calloc
+__default_pthread_attr_lock
+__curbrk
+__getrandom
+__gconv_compare_alias
+__wprintf_buffer_as_file_terminate
+__tfind
+_nl_global_locale
+__strtof_nan
+_dl_verbose
+_IO_default_seekoff
+_dl_dprintf
+__strncasecmp_l
+_IO_doallocbuf
+_dl_signal_error
+_dl_phnum
+_flushlbf
+_dl_exception_create_format
+__strtol_ul_rem_tab
+_dl_find_object
+__printf_buffer_as_file_xsputn
+__closedir
+__aarch64_have_sme
+_dl_profile_map
+_IO_switch_to_backup_area
+__pthread_kill
+__dlerror
+__pthread_mutex_unlock_usercnt
+_Unwind_SetGR
+__printf_buffer_as_file_terminate
+__strlen_generic
+__gconv_transform_internal_ucs4le
+_IO_new_file_init_internal
+____strtoull_l_internal
+__nptl_stack_list_add
+__munmap
+__libc_tsd_CTYPE_TOUPPER
+__malloc_usable_size
+__gconv_transliterate
+__openat
+_sys_errlist_internal
+__strtoul_l
+___dlmopen
+_IO_wsetb
+DW.ref.__gcc_personality_v0
+__printf_buffer_as_file_init
+___pthread_cond_broadcast
+__fprintf
+_dl_aarch64_cap_flags
+__tzstring
+_nl_C_LC_MESSAGES
+__pthread_self
+__wcsmbs_named_conv
+__syscall_cancel_arch_start
+__grouping_iterator_init
+_IO_seekoff
+_dl_aux_init
+_dl_hwcap
+strtof32x
+_itowa_upper_digits
+__libc_printf_freemem
+__use_tzfile
+_nl_category_names
+__fstat
+__open64_nocancel
+__gconv_create_spec
+_nl_C_codeset
+_dl_initfirst
+__memmove_generic
+__lstat
+_IO_str_underflow
+__sigprocmask
+_setjmp
+__ctype_toupper_loc
+__printf_buffer_flush_to_file
+__funlockfile
+_IO_stdin_used
+_exit
+_dl_load_write_lock
+_dl_tlsdesc_return
+__init_sched_fifo_prio
+__alloc_dir
+strspn
+___pthread_once
+_dl_vdso_getrandom
+__getdents64
+__futex_abstimed_wait_cancelable64
+_Unwind_GetGR
+_nl_default_default_domain
+__libc_argv
+__libc_start_main
+__lll_lock_wait_private
+__arm_tpidr2_save
+___pthread_mutex_unlock
+_IO_init_internal
+__GI___fstatat
+program_invocation_name
+__libc_dlsym
+__malloc_fork_unlock_parent
+__memmove_a64fx
+_dl_show_scope
+__libc_write
+__pthread_tpp_change_priority
+__mutex_aconf
+__wprintf_buffer
+_IO_init
+_dl_sort_maps_init
+__strtoul
+_dl_error_free
+__gconv_transform_internal_ucs2reverse
+__memchr_generic
+_nl_C_LC_CTYPE_class_lower
+_dl_all_dirs
+_dl_dso_sort_algo
+__setenv
+__clearenv
+strchr
+__libc_mtag_tag_region
+_dl_add_to_slotinfo
+__libc_memset
+__libc_memmove
+__realloc
+__gconv_alias_db
+_IO_iter_end
+__mallopt
+__mempcpy_chk
+__getauxval2
+_Unwind_GetDataRelBase
+_IO_new_file_underflow
+__data_start
+_dlerror_run
+_dl_sym
+__libc_fatal
+__get_phys_pages
+__sbrk
+__memcpy_oryon1
+_IO_default_seek
+__tdelete
+__wprintf_buffer_pad_1
+_dl_get_dl_main_map
+_r_debug
+__printf_va_arg_table
+__malloc_stats
+___pthread_rwlock_init
+_IO_wdefault_pbackfail
+__vfprintf_internal
+_IO_list_all
+__libc_setenv_freemem
+__argz_add_sep
+_IO_new_file_overflow
+__libc_dlopen_mode
+__unsetenv
+__libc_alloc_buffer_alloc_array
+_IO_new_file_seekoff
+__futex_lock_pi64
+__syscall_cancel
+__mktime_internal
+_dl_sysdep_read_whole_file
+__memset_generic
+__prctl
+_IO_file_sync_mmap
+__printf_function_invoke
+__openat_nocancel
+_dl_find_object_update
+_dl_addr
+__get_avphys_pages
+__handle_registered_modifier_wc
+__open64
+_nl_C_LC_PAPER
+_dl_catch_error
+__memchr_nosimd
+_IO_un_link
+__register_frame_info_table
+__printf_buffer
+_IO_file_setbuf_mmap
+_dl_inhibit_rpath
+aligned_alloc
+_IO_default_pbackfail
+_dl_vdso_gettimeofday
+_dl_tlsdesc_undefweak
+__register_frame_info
+__pointer_chk_guard_local
+__sysinfo
+__printf_buffer_puts_1
+__new_fopen
+__aarch64_ldadd8_relax
+_dl_assign_tls_modid
+__wmemcpy
+_IO_iter_next
+_dl_close_worker
+_dl_tls_static_surplus_init
+_dl_pagesize
+__valloc
+_IO_2_1_stderr_
+__progname_full
+__memset_chk
+_IO_switch_to_main_get_area
+raise
+__libc_cleanup_pop_restore
+__vasprintf_internal
+_IO_seekmark
+_nl_C_LC_CTYPE_class_alpha
+__towctrans
+_dl_vdso_clock_getres_time64
+_IO_old_init
+_dl_map_object_deps
+_nl_C_LC_IDENTIFICATION
+_dl_ns
+_nl_load_locale_from_archive
+.symtab
+.strtab
+.shstrtab
+.note.gnu.build-id
+.rela.plt
+.init
+.text
+.fini
+.rodata
+.eh_frame
+.gcc_except_table
+.note.ABI-tag
+.tdata
+.tbss
+.init_array
+.fini_array
+.data.rel.ro
+.got
+.got.plt
+.data
+.bss
+.comment
+.debug_aranges
+.debug_info
+.debug_abbrev
+.debug_line
+.debug_str
+.debug_line_str
+.debug_loclists
+.debug_rnglists
+
