@@ -1,0 +1,327 @@
+Cross target executable analysis
+Executable: /home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-cross-host
+
+File type
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-cross-host: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=e011d59c2ed58eff560d5d3eae7f24cc05093e29, for GNU/Linux 3.7.0, with debug_info, not stripped
+
+ELF header: readelf -hW
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              DYN (Position-Independent Executable file)
+  Machine:                           AArch64
+  Version:                           0x1
+  Entry point address:               0xb40
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          74216 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         10
+  Size of section headers:           64 (bytes)
+  Number of section headers:         38
+  Section header string table index: 37
+
+Program headers: readelf -lW
+
+Elf file type is DYN (Position-Independent Executable file)
+Entry point 0xb40
+There are 10 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  PHDR           0x000040 0x0000000000000040 0x0000000000000040 0x000230 0x000230 R   0x8
+  INTERP         0x000294 0x0000000000000294 0x0000000000000294 0x00001b 0x00001b R   0x1
+      [Requesting program interpreter: /lib/ld-linux-aarch64.so.1]
+  LOAD           0x000000 0x0000000000000000 0x0000000000000000 0x000f60 0x000f60 R E 0x10000
+  LOAD           0x00fdb8 0x000000000001fdb8 0x000000000001fdb8 0x0002c0 0x0002c8 RW  0x10000
+  DYNAMIC        0x00fdc8 0x000000000001fdc8 0x000000000001fdc8 0x0001e0 0x0001e0 RW  0x8
+  NOTE           0x000270 0x0000000000000270 0x0000000000000270 0x000024 0x000024 R   0x4
+  NOTE           0x000f40 0x0000000000000f40 0x0000000000000f40 0x000020 0x000020 R   0x4
+  GNU_EH_FRAME   0x000e00 0x0000000000000e00 0x0000000000000e00 0x000044 0x000044 R   0x4
+  GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10
+  GNU_RELRO      0x00fdb8 0x000000000001fdb8 0x000000000001fdb8 0x000248 0x000248 R   0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .note.gnu.build-id .interp .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .text .fini .rodata .eh_frame_hdr .eh_frame .note.ABI-tag 
+   03     .init_array .fini_array .dynamic .got .got.plt .data .bss 
+   04     .dynamic 
+   05     .note.gnu.build-id 
+   06     .note.ABI-tag 
+   07     .eh_frame_hdr 
+   08     
+   09     .init_array .fini_array .dynamic .got 
+
+Dynamic section: readelf -dW
+
+Dynamic section at offset 0xfdc8 contains 26 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x000000000000000c (INIT)               0x808
+ 0x000000000000000d (FINI)               0xca4
+ 0x0000000000000019 (INIT_ARRAY)         0x1fdb8
+ 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x1fdc0
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x2b0
+ 0x0000000000000005 (STRTAB)             0x4b0
+ 0x0000000000000006 (SYMTAB)             0x2d0
+ 0x000000000000000a (STRSZ)              209 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000015 (DEBUG)              0x0
+ 0x0000000000000003 (PLTGOT)             0x1ffe8
+ 0x0000000000000002 (PLTRELSZ)           312 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x6d0
+ 0x0000000000000007 (RELA)               0x5e0
+ 0x0000000000000008 (RELASZ)             240 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000006ffffffb (FLAGS_1)            Flags: PIE
+ 0x000000006ffffffe (VERNEED)            0x5b0
+ 0x000000006fffffff (VERNEEDNUM)         1
+ 0x000000006ffffff0 (VERSYM)             0x582
+ 0x000000006ffffff9 (RELACOUNT)          4
+ 0x0000000000000000 (NULL)               0x0
+
+Symbol versions: readelf -VW
+
+Version symbols section '.gnu.version' contains 20 entries:
+ Addr: 0x0000000000000582  Offset: 0x00000582  Link: 4 (.dynsym)
+  000:   0 (*local*)       0 (*local*)       0 (*local*)       2 (GLIBC_2.34) 
+  004:   3 (GLIBC_2.17)    0 (*local*)       3 (GLIBC_2.17)    3 (GLIBC_2.17) 
+  008:   3 (GLIBC_2.17)    3 (GLIBC_2.17)    3 (GLIBC_2.17)    3 (GLIBC_2.17) 
+  00c:   3 (GLIBC_2.17)    0 (*local*)       3 (GLIBC_2.17)    3 (GLIBC_2.17) 
+  010:   3 (GLIBC_2.17)    0 (*local*)       3 (GLIBC_2.17)    3 (GLIBC_2.17) 
+
+Version needs section '.gnu.version_r' contains 1 entry:
+ Addr: 0x00000000000005b0  Offset: 0x000005b0  Link: 5 (.dynstr)
+  000000: Version: 1  File: libc.so.6  Cnt: 2
+  0x0010:   Name: GLIBC_2.17  Flags: none  Version: 3
+  0x0020:   Name: GLIBC_2.34  Flags: none  Version: 2
+
+Shared libraries: ldd
+	linux-vdso.so.1 (0x00007fff31028000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x00007fff30df0000)
+	/lib/ld-linux-aarch64.so.1 (0x00007fff30ff0000)
+
+Code and data sizes: size
+   text	   data	    bss	    dec	    hex	filename
+   3247	    704	      8	   3959	    f77	/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-cross-host
+
+File size
+/home/art207-rpi5/Projects/TASK-04.-Cross-compilation/builds/env-info-cross-host: 76648 bytes
+
+Printable strings: strings -a
+	>)/lib/ld-linux-aarch64.so.1
+ctime
+perror
+fflush
+fopen
+stdout
+__libc_start_main
+stderr
+fprintf
+__cxa_finalize
+fclose
+fwrite
+uname
+abort
+libc.so.6
+GLIBC_2.17
+GLIBC_2.34
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+=== ENVIRONMENT INFORMATION ===
+Hostname: %s
+Time: %sOS: %s
+Kernel release: %s
+Kernel version: %s
+Hardware platform: %s
+Usage: %s [file]
+uname
+time
+Could not format time
+stdout
+Warning: file '%s' already exists. Information will be appended.
+fopen
+fprintf
+fclose
+GCC: (GNU) 16.1.0
+_IO_buf_end
+fopen
+_old_offset
+timestamp
+version
+current_time
+_IO_save_end
+short int
+_IO_lock_t
+_IO_write_ptr
+_flags
+ctime
+_IO_buf_base
+file
+_markers
+_IO_read_end
+_freeres_buf
+__domainname
+GNU C11 16.1.0 -mlittle-endian -mabi=lp64 -g -O2 -std=c11
+stderr
+_lock
+uname
+long int
+stream
+_cur_column
+perror
+utsname
+fprintf
+argv
+fflush
+_IO_FILE
+release
+unsigned char
+_prevchain
+argc
+_IO_marker
+_shortbuf
+_IO_write_base
+_unused2
+_unused3
+_IO_read_ptr
+short unsigned int
+main
+_freeres_list
+fclose
+sysname
+__builtin_fwrite
+__uint64_t
+print_env_info
+nodename
+_IO_codecvt
+long unsigned int
+_IO_write_end
+machine
+__off64_t
+__off_t
+_chain
+__time_t
+_IO_wide_data
+_IO_backup_base
+_flags2
+_mode
+_IO_read_base
+_vtable_offset
+_IO_save_base
+_total_written
+_fileno
+stdout
+_short_backupbuf
+/home/art207/Projects/TASK-04.-Cross-compilation
+/home/art207/Projects/TASK-04.-Cross-compilation/src/env-info.c
+/home/art207/Projects/TASK-04.-Cross-compilation/src
+/usr/aarch64-linux-gnu/include/bits
+/usr/aarch64-linux-gnu/include/bits/types
+/usr/aarch64-linux-gnu/include
+/usr/aarch64-linux-gnu/include/sys
+types.h
+struct_FILE.h
+stdio.h
+utsname.h
+time_t.h
+time.h
+<built-in>
+aeabi_feature_and_bits
+start.os
+abi-note.c
+__abi_tag
+init.c
+crti.o
+call_weak_fn
+crtn.o
+env-info.c
+crtstuff.c
+deregister_tm_clones
+__do_global_dtors_aux
+completed.0
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+__FRAME_END__
+_DYNAMIC
+__GNU_EH_FRAME_HDR
+_GLOBAL_OFFSET_TABLE_
+__libc_start_main@GLIBC_2.34
+perror@GLIBC_2.17
+_ITM_deregisterTMCloneTable
+__bss_start__
+__cxa_finalize@GLIBC_2.17
+stderr@GLIBC_2.17
+ctime@GLIBC_2.17
+_edata
+_fini
+__bss_end__
+fclose@GLIBC_2.17
+fopen@GLIBC_2.17
+stdout@GLIBC_2.17
+__data_start
+__gmon_start__
+__dso_handle
+abort@GLIBC_2.17
+_IO_stdin_used
+_end
+__end__
+__bss_start
+main
+fwrite@GLIBC_2.17
+fflush@GLIBC_2.17
+print_env_info
+__TMC_END__
+_ITM_registerTMCloneTable
+uname@GLIBC_2.17
+_init
+fprintf@GLIBC_2.17
+.symtab
+.strtab
+.shstrtab
+.note.gnu.build-id
+.interp
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rela.dyn
+.rela.plt
+.init
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.note.ABI-tag
+.init_array
+.fini_array
+.dynamic
+.got
+.got.plt
+.data
+.bss
+.comment
+.debug_aranges
+.debug_info
+.debug_abbrev
+.debug_line
+.debug_str
+.debug_line_str
+.debug_loclists
+.debug_rnglists
+.ARM.attributes
+
