@@ -28,7 +28,7 @@ fi
 
 mkdir -p "$BUILD_DIR"
 
-echo " Native build"
+echo "Native host build"
 echo
 echo "Compiler : $CC"
 echo "Source   : $SRC"
@@ -41,7 +41,7 @@ echo
     -o "$OUTPUT"
 
 echo
-echo "Build completed successfully."
+echo "Build completed successfully"
 echo
 
 file "$OUTPUT"
